@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Redressed&display=swap");
+
+.hero {
+  /* border: solid 1px black; */
+  height: 100%;
+  /* background-color: red; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  text-transform: capitalize;
+  /* font-family: "Redressed", cursive; */
+  font-size: 25px;
+  position: relative;
+}
+
+.hero p {
+  z-index: 2;
+  /* border: solid 2px red; */
+  /* text-align: center; */
+  padding: 0 2vw;
+  font-size: 40px;
+}
+
+.dark-overlay {
+  position: absolute;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}

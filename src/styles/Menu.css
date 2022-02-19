@@ -1,0 +1,260 @@
+.menuBackground {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu {
+  scroll-behavior: smooth;
+  width: 60%;
+  height: 95%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: white;
+  color: black;
+  /* position: relative; */
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: solid 1px black; */
+  font-size: 25px;
+  padding: 0 0 0 2vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  width: 60%;
+  transition: all 250ms ease-in-out;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+  z-index: 99;
+}
+
+.scrolled {
+  background-color: white;
+  opacity: 1;
+}
+
+.menuHeader:first-child {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.menuOptions {
+  flex: 0 0 150px;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+}
+
+.menuOptions div {
+  flex: 1 0 auto;
+  text-align: center;
+  padding: 7px 0;
+  border-left: solid 1px #808080;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.menuHeader img {
+  width: 30px;
+  /* height: 100%; */
+}
+
+.menuHero {
+  height: 280px;
+}
+
+.categories,
+.foods {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.foods {
+  /* position: relative; */
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  /* border: solid 1px green; */
+}
+
+.infos {
+  /* border: solid 1px red; */
+  flex: 0 0 47%;
+  /* position: relative; */
+}
+
+.picture {
+  height: 100px;
+  width: 100px;
+  border: solid 1px red;
+  flex: 0 0 47%;
+  margin-top: 65px;
+}
+
+.categoryName {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 25px;
+  height: 40px;
+  /* border: solid 1px red; */
+}
+
+.food {
+  cursor: pointer;
+  transition: all 400ms ease-in-out;
+  /* margin: 30px; */
+}
+
+.food.selected {
+  /* border: solid 4px black; */
+  /* position: absolute; */
+
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* top: ; */
+  /* bottom: 0; */
+  /* padding: 20px; */
+  width: 28%;
+  z-index: 35;
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.food:nth-child(1) {
+  border-top: solid 1px #808080;
+  border-bottom: solid 1px #808080;
+  padding: 10px 0;
+}
+
+.food:not(:first-child) {
+  border-bottom: solid 1px #808080;
+  padding: 10px 0;
+}
+
+.foodName,
+.foodPrice {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.foodPrice::after {
+  content: "FCFA";
+  padding-left: 3px;
+  /* border: solid 1px green; */
+}
+
+.foodDescription {
+  max-width: 90%;
+  color: #808080;
+}
+
+.foodName.selected {
+  padding-left: 15px;
+}
+.foodPrice.selected {
+  padding-right: 15px;
+}
+.foodDescription.selected {
+  padding: 0 15px;
+}
+
+.detailswrapper {
+  position: fixed;
+  top: 68px;
+  overflow-y: hidden;
+  width: 60%;
+  height: 88%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 34;
+  /* Add the blur effect  */
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+  /* border: solid 1px red; */
+}
+
+.commandDetails {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  /* transform: translate(-50%, -50%); */
+  /* right: 15px; */
+  width: 45.5%;
+  height: 91%;
+  /* border: solid 1px blue; */
+  background-color: #f7f7f7;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  z-index: 999;
+}
+
+@media screen and (max-width: 1000px) {
+  #menu,
+  .menuHeader,
+  .detailswrapper {
+    width: 90%;
+  }
+
+  .food.selected {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .food.selected {
+    width: 85%;
+    top: 12%;
+    /* border: solid 4px blue; */
+  }
+
+  .detailswrapper {
+  }
+
+  .commandDetails {
+    width: 91%;
+    height: 83%;
+    margin-top: 36px;
+    top: 50%;
+    left: 50%;
+    /* border: solid 1px red; */
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .category {
+    /* flex-wrap: wrap; */
+    /* flex-direction: row-reverse; */
+    flex-wrap: wrap;
+    border: solid 1px green;
+  }
+
+  .menuHero {
+    height: 200px;
+  }
+  .picture {
+  }
+  .infos,
+  .picture {
+    flex: 1 0 100%;
+  }
+}
