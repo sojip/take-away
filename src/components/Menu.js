@@ -10,6 +10,7 @@ const _ = require("lodash");
 const Menu = (props) => {
   const [showdetails, setshowdetails] = useState(false);
   const [command, setcommand] = useState({});
+  const [shoppingcart, setshoppingcart] = useState([]);
   let domcustomisationOptions;
 
   // Create a condition that targets viewports at least 800px wide
@@ -26,38 +27,6 @@ const Menu = (props) => {
         setshowdetails={setshowdetails}
         key={categories.indexOf(category)}
       />
-      //   <li className="category" key={categories.indexOf(category)}>
-      //     <div className="infos">
-      //       <div className="categoryName">{category.name}</div>
-      //       <ul className="foods">
-      //         {category.foods.map((food) => {
-      //           return (
-      //             <motion.li
-      //               className="food"
-      //               onClick={handleFoodSelection}
-      //               key={category.foods.indexOf(food)}
-      //               initial={{ x: 0, y: 10 }}
-      //               animate={{ x: 0, y: 0 }}
-      //             >
-      //               <div className="foodWrapper">
-      //                 <div
-      //                   style={{
-      //                     display: "flex",
-      //                     justifyContent: "space-between",
-      //                   }}
-      //                 >
-      //                   <div className="foodName">{food.name}</div>
-      //                   <div className="foodPrice">{food.price}</div>
-      //                 </div>
-      //                 <div className="foodDescription">{food.description}</div>
-      //               </div>
-      //             </motion.li>
-      //           );
-      //         })}
-      //       </ul>
-      //     </div>
-      //     <div className="picture"></div>
-      //   </li>
     );
   });
 
@@ -72,12 +41,12 @@ const Menu = (props) => {
     // Initial check
     handleTabletChange(mediaQuery);
 
-    console.log(command);
+    console.log(cart);
     return () => {
       menu.removeEventListener("scroll", changeHeaderOpacity);
       mediaQuery.removeListener(handleTabletChange);
     };
-  }, [command]);
+  }, [command, cart]);
 
   function handleTabletChange(e) {
     let backdiv = document.querySelector(".back");
@@ -94,36 +63,6 @@ const Menu = (props) => {
     document.querySelector(".menuHeader").style.paddingLeft = "2vw";
     return false;
   }
-
-  //   function handleFoodSelection(e) {
-  //     let food = e.currentTarget;
-  //     let foodWrapper = food.firstChild;
-  //     const category = e.currentTarget.parentNode.previousSibling.textContent;
-  //     const header = document.querySelector(".menuHeader");
-  //     const food_dish = food.firstChild.firstChild.firstChild.textContent;
-  //     let selectedcategoy = categories.find((cat) => cat.name === category);
-  //     let selectedfood = selectedcategoy.foods.find(
-  //       (food_) => food_.name === food_dish
-  //     );
-  //     //change header background
-  //     header.classList.add("scrolled");
-  //     //change bacground color of element
-  //     food.classList.add("selected");
-  //     //change padding of element
-  //     foodWrapper.classList.add("selected");
-  //     //show details of selection
-  //     setshowdetails(true);
-  //     // show back button if resolution is under 800px
-  //     handleTabletChange(mediaQuery);
-  //     //add command
-  //     const _command = _.cloneDeep(selectedfood);
-  //     _command.options = selectedcategoy.custom_options.map((option) => {
-  //       return { name: option, checked: false };
-  //     });
-  //     _command.instructions = "";
-  //     _command.quantity = 1;
-  //     setcommand(_command);
-  //   }
 
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
@@ -181,6 +120,16 @@ const Menu = (props) => {
     setcommand({ ...command, [name]: value });
   }
 
+  function addToCart() {
+    const _command = _.cloneDeep(command);
+    _command.options = _command.options.filter((option) => {
+      return option.checked === true;
+    });
+    console.log(_command);
+    setshoppingcart([...shoppingcart, _command]);
+    backToMenu();
+  }
+
   if (command.options) {
     domcustomisationOptions = command.options.map((option) => {
       return (
@@ -194,6 +143,9 @@ const Menu = (props) => {
             />
             {option.name}
           </label>
+          {option.price !== undefined && (
+            <span className="optionPrice">{option.price}</span>
+          )}
         </div>
       );
     });
@@ -204,9 +156,18 @@ const Menu = (props) => {
       <div id="menu">
         <div className="menuHeader">
           <div className="logoWrapper">
-            <div className="back" onClick={backToMenu}>
-              <img src={Backbutton} id="backbutton" alt="back" />
-            </div>
+            <AnimatePresence>
+              <motion.div
+                className="back"
+                onClick={backToMenu}
+                initial={{ x: -5, y: 0 }}
+                animate={{ x: 0, y: 0 }}
+                exit={{ x: -300, opacity: 0 }}
+              >
+                <img src={Backbutton} id="backbutton" alt="back" />
+              </motion.div>
+            </AnimatePresence>
+
             <div>Take Away</div>
           </div>
           <div className="menuOptions">
@@ -215,6 +176,15 @@ const Menu = (props) => {
             </div>
             <div>
               <img src={cart} alt="cart" />
+              {shoppingcart.length > 0 && (
+                <motion.span
+                  className="notificationsCount"
+                  initial={{ x: 0, y: -100 }}
+                  animate={{ x: 0, y: 0 }}
+                >
+                  {shoppingcart.length}
+                </motion.span>
+              )}
             </div>
           </div>
         </div>
@@ -286,7 +256,9 @@ const Menu = (props) => {
                 </div>
 
                 <div className="addtocartwrapper">
-                  <button id="addToCart">Add To Cart</button>
+                  <button id="addToCart" onClick={addToCart}>
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             </div>
@@ -329,7 +301,10 @@ const CatItem = (props) => {
     //add command
     const _command = _.cloneDeep(selectedfood);
     _command.options = selectedcategoy.custom_options.map((option) => {
-      return { name: option, checked: false };
+      //   return { name: option, checked: false };
+      const option_ = _.cloneDeep(option);
+      option_.checked = false;
+      return option_;
     });
     _command.instructions = "";
     _command.quantity = 1;

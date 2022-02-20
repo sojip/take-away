@@ -10,25 +10,44 @@ const Header = () => {
     return { name, custom_options, foods };
   };
 
-  const Food_dish = function (name, description, price) {
+  const Food_dish = function (name, description, price = 0) {
     return { name, description, price };
+  };
+
+  const CustomOption = function (name, price) {
+    return { name, price };
   };
   const [showmenu, setshowmenu] = useState(false);
 
   const [categories, setcategories] = useState([
     Category(
       "omelettes",
-      ["sardine", "saucisson", "spaghetti"],
+      [
+        CustomOption("sardine", 200),
+        CustomOption("saucisson", 100),
+        CustomOption("spaghetti", 100),
+      ],
       [Food_dish("oeuf simple", "", 200)]
     ),
     Category(
       "salades",
-      ["mayonnaise", "lait", "tomates", "moutarde"],
+      [
+        CustomOption("mayonnaise"),
+        CustomOption("lait"),
+        CustomOption("tomates"),
+        CustomOption("moutarde"),
+      ],
       [Food_dish("purée d'avocats", "", 700)]
     ),
     Category(
       "burgers",
-      ["oignon", "tomates", "moutarde", "mayonnaise", "ketchup"],
+      [
+        CustomOption("oignon"),
+        CustomOption("tomates"),
+        CustomOption("moutarde"),
+        CustomOption("mayonnaise"),
+        CustomOption("ketchup"),
+      ],
       [
         Food_dish(
           "burger simple",
@@ -58,7 +77,11 @@ const Header = () => {
     ),
     Category(
       "boissons chaudes",
-      ["sucre", "matinal", "ovaltine"],
+      [
+        CustomOption("sucre"),
+        CustomOption("matinal"),
+        CustomOption("ovaltine"),
+      ],
       [
         Food_dish("café", "1 tasse", 200),
         Food_dish("lait", "1 tasse", 200),
@@ -77,7 +100,7 @@ const Header = () => {
     ),
     Category(
       "viandes",
-      ["mayonnaise", "piment"],
+      [CustomOption("mayonnaise"), CustomOption("piment")],
       [
         Food_dish("poulet", "1/4 poulet", 1500),
         Food_dish("beefteck", "1 portion", 1500),

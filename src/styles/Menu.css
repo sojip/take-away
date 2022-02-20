@@ -56,6 +56,7 @@
 }
 
 .menuOptions div {
+  /* position: relative; */
   flex: 1 0 auto;
   text-align: center;
   padding: 7px 0;
@@ -67,6 +68,19 @@
 .menuHeader img {
   width: 30px;
   /* height: 100%; */
+}
+
+.menuHeader .notificationsCount {
+  position: absolute;
+  /* display: block; */
+  top: 3px;
+  right: 25.5px;
+  /* right: ; */
+  padding: 4px 5px;
+  font-size: 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
 }
 
 .menuHero {
@@ -115,7 +129,7 @@
 
 .food {
   cursor: pointer;
-  transition: all 400ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .food.selected {
@@ -203,6 +217,16 @@
   /* border: solid 1vw white; */
   padding: 2vw;
   overflow-y: auto;
+}
+
+.commandDetails .customisation .optionPrice {
+  float: right;
+  margin-right: 2vw;
+  font-weight: bold;
+}
+
+.commandDetails .customisation .optionPrice::before {
+  content: "+";
 }
 .commandDetails .addtocartwrapper {
   flex: 0 0 20%;
