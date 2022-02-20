@@ -10,11 +10,11 @@ const Header = () => {
     return { name, custom_options, foods };
   };
 
-  const Food_dish = function (name, description, price = 0) {
+  const Food_dish = function (name, description, price) {
     return { name, description, price };
   };
 
-  const CustomOption = function (name, price) {
+  const CustomOption = function (name, price = 0) {
     return { name, price };
   };
   const [showmenu, setshowmenu] = useState(false);
