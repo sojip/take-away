@@ -4,10 +4,30 @@ import cart from "../images/shopping-cart.png";
 import menuImage from "../images/burger_frites.jpg";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Backbutton from "../images/back_icon.png";
 
 const Menu = (props) => {
   const [showdetails, setshowdetails] = useState(false);
+  const [command, setcommand] = useState({});
 
+  let domcustomisationOptions;
+  // Create a condition that targets viewports at least 800px wide
+  const mediaQuery = window.matchMedia("(max-width: 800px)");
+  function handleTabletChange(e) {
+    let backdiv = document.querySelector(".back");
+    // Check if the media query is true
+    if (e.matches) {
+      let selected = document.querySelector(".food.selected");
+      if (selected) {
+        backdiv.style.display = "block";
+        document.querySelector(".menuHeader").style.paddingLeft = 0;
+        return true;
+      }
+    }
+    backdiv.style.display = "none";
+    document.querySelector(".menuHeader").style.paddingLeft = "2vw";
+    return false;
+  }
   const categories = props.categories;
   const domcategories = categories.map((category) => {
     return (
@@ -24,13 +44,18 @@ const Menu = (props) => {
                   initial={{ x: 0, y: 10 }}
                   animate={{ x: 0, y: 0 }}
                 >
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div className="foodName">{food.name}</div>
-                    <div className="foodPrice">{food.price}</div>
+                  <div className="foodWrapper">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div className="foodName">{food.name}</div>
+                      <div className="foodPrice">{food.price}</div>
+                    </div>
+                    <div className="foodDescription">{food.description}</div>
                   </div>
-                  <div className="foodDescription">{food.description}</div>
                 </motion.li>
               );
             })}
@@ -42,94 +67,53 @@ const Menu = (props) => {
   });
 
   useEffect(() => {
-    // console.log(categories);
+    //change menu Header background on scroll
     const menu = document.querySelector("#menu");
     menu.addEventListener("scroll", changeHeaderOpacity);
 
-    const selected = document.querySelector(".selected");
+    // Register media query event listener
+    mediaQuery.addListener(handleTabletChange);
+
+    // Initial check
+    handleTabletChange(mediaQuery);
 
     return () => {
-      const menu = document.querySelector("#menu");
       menu.removeEventListener("scroll", changeHeaderOpacity);
+      mediaQuery.removeListener(handleTabletChange);
     };
   }, []);
 
-  function scrollIfNeeded(element, container) {
-    if (element.offsetTop < container.scrollTop) {
-      container.scrollTop = element.offsetTop + 140;
-    } else {
-      console.log("here");
-
-      const offsetBottom = element.offsetTop + element.offsetHeight;
-      const scrollBottom = container.scrollTop + container.offsetHeight;
-      if (offsetBottom > scrollBottom) {
-        container.scrollTop = offsetBottom - container.offsetHeight;
-      }
-    }
-  }
-
   function handleFoodSelection(e) {
     let food = e.currentTarget;
-
-    let foodname = food.firstChild.childNodes[0];
-    let foodprice = food.firstChild.childNodes[1];
-    let foodDescription = food.childNodes[1];
-
+    let foodWrapper = food.firstChild;
+    let backdiv = document.querySelector(".back");
     const header = document.querySelector(".menuHeader");
     const menu = document.querySelector("#menu");
-    const food_dish = e.currentTarget.firstChild.firstChild.textContent;
     const category = e.currentTarget.parentNode.previousSibling.textContent;
-    food.classList.add("selected");
-    // food.nextElementSibling.style.marginTop = `${food.offsetHeight}px`;
 
-    //media query
-    if (window.screen.width < 610) {
-      //   menu.scrollTop = food.offsetTop + 140;
-      //   scrollIfNeeded(food, menu);
-    } else {
-      console.log(`menu offsetheight ${menu.offsetHeight}`);
-      console.log(`food offsettop ${food.offsetTop}`);
-
-      //   const y = menu.offsetHeight + food.offsetTop;
-      //   food.style.top = `${menu.scrollTop + menu.offsetHeight/2}px`;
-      //   menu.scrollTo({ top: food.offsetTop });
-
-      //   menu.scrollTop = `${menu.scrollTop + menu.offsetHeight / 2}px`;
-
-      //   menu.scrollTop = `${menu.scrollTop}px`;
-      //   food.style.top = `${food.scrollTop}px`;
-      //   food.scrollIntoView({
-      //     behavior: "smooth",
-      //     block: "center",
-      //     inline: "nearest",
-      //   });
-    }
-
+    //change header background
     header.classList.add("scrolled");
+    //change bacground color of element
+    food.classList.add("selected");
+    //change padding of element
+    foodWrapper.classList.add("selected");
+    //show details of selection
     setshowdetails(true);
-    foodname.classList.add("selected");
-    foodprice.classList.add("selected");
-    foodDescription.classList.add("selected");
-    // menu.style.overflowY = "hidden";
+    // show back button if resolution is under 800px
+    handleTabletChange(mediaQuery);
   }
 
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
     const menu = document.querySelector("#menu");
-    let selected = document.querySelector(".selected");
-    let foodname = selected.firstChild.childNodes[0];
-    let foodprice = selected.firstChild.childNodes[1];
-    let foodDescription = selected.childNodes[1];
+    let selected = document.querySelector(".food.selected");
+    let foodWrapper = document.querySelector(".foodWrapper.selected");
 
     if (e.target === e.currentTarget) {
       selected.classList.remove("selected");
-      foodname.classList.remove("selected");
-      foodprice.classList.remove("selected");
-      foodDescription.classList.remove("selected");
+      foodWrapper.classList.remove("selected");
       setshowdetails(false);
-
       if (menu.scrollTop < 250) header.classList.remove("scrolled");
-      menu.style.overflowY = "auto";
     }
     return;
   }
@@ -137,23 +121,63 @@ const Menu = (props) => {
   const changeHeaderOpacity = () => {
     const menu = document.querySelector("#menu");
     const header = document.querySelector(".menuHeader");
-    if (document.querySelector(".selected")) {
-      header.classList.add("scrolled");
-      return;
-    }
     if (menu.scrollTop > 250) {
       header.classList.add("scrolled");
       return;
     }
     header.classList.remove("scrolled");
-    // header.style.opacity = "0.5";
   };
+
+  function backToMenu() {
+    const menu = document.querySelector("#menu");
+    let backdiv = document.querySelector(".back");
+    let header = document.querySelector(".menuHeader");
+    let selected = document.querySelector(".food.selected");
+    let foodWrapper = document.querySelector(".foodWrapper.selected");
+    backdiv.style.display = "none";
+    selected.classList.remove("selected");
+    foodWrapper.classList.remove("selected");
+    setshowdetails(false);
+
+    if (menu.scrollTop < 250) header.classList.remove("scrolled");
+    document.querySelector(".menuHeader").style.paddingLeft = "2vw";
+  }
+
+  if (showdetails) {
+    //find selected food an category
+    let food = document.querySelector(".food.selected");
+    const food_dish = food.firstChild.firstChild.firstChild.textContent;
+    let category = food.parentNode.previousSibling.textContent;
+    let selectedcategoy = categories.find((cat) => cat.name === category);
+    let selectedfood = selectedcategoy.foods.find(
+      (food_) => food_.name === food_dish
+    );
+    domcustomisationOptions = selectedcategoy.custom_options.map((option) => {
+      return (
+        <div
+          key={selectedcategoy.custom_options.indexOf(option)}
+          className="option"
+        >
+          <label htmlFor={option}>
+            <input type="checkbox" id={option} />
+            {option}
+          </label>
+        </div>
+      );
+    });
+    console.log(selectedfood);
+  }
 
   return (
     <div className="menuBackground">
       <div id="menu">
         <div className="menuHeader">
-          <div>Take Away</div>
+          <div className="logoWrapper">
+            <div className="back" onClick={backToMenu}>
+              <img src={Backbutton} id="backbutton" alt="back" />
+            </div>
+            <div>Take Away</div>
+          </div>
           <div className="menuOptions">
             <div>
               <img src={menu} alt="menu" />
@@ -163,7 +187,7 @@ const Menu = (props) => {
             </div>
           </div>
         </div>
-        <div
+        <motion.div
           className="menuHero"
           style={{
             backgroundImage: `url(${menuImage})`,
@@ -172,24 +196,64 @@ const Menu = (props) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}
-        ></div>
-        <div style={{ padding: "15px" /*position: "relative"*/ }}>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        ></motion.div>
+        <div className="categoriesWrapper">
           <ul className="categories">{domcategories}</ul>
         </div>
 
         <AnimatePresence>
           {showdetails && (
-            <motion.div
-              className="detailswrapper"
-              onClick={closedetails}
-              key="modal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="commandDetails">voula</div>
-            </motion.div>
+            <div>
+              <motion.div
+                className="detailswrapper"
+                onClick={closedetails}
+                key="modal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="mobilecommandDetails">
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                  <div className="content"></div>
+                </div>
+              </motion.div>
+              <div className="commandDetails">
+                <div className="customisation">
+                  <div className="selectedDescription"></div>
+                  <div style={{ marginBottom: "15px" }}>
+                    Customisez votre repas:
+                  </div>
+                  {domcustomisationOptions}
+                  <div style={{ marginBottom: "15px", marginTop: "15px" }}>
+                    Instructions spéciales
+                  </div>
+                  <textarea
+                    name="instructions"
+                    id="instructions"
+                    placeholder="Exemple: pas de poivre/sucre/sel svp"
+                    rows="3"
+                  ></textarea>
+                  <div style={{ marginBottom: "15px" }}>Quantité</div>
+                  <input type="number" value="1" />
+                </div>
+
+                <div className="addtocartwrapper">
+                  <button id="addToCart">Add To Cart</button>
+                </div>
+              </div>
+            </div>
           )}
         </AnimatePresence>
       </div>

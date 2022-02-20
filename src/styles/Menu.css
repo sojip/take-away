@@ -19,7 +19,6 @@
   overflow-x: hidden;
   background-color: white;
   color: black;
-  /* position: relative; */
 }
 
 .menuHeader {
@@ -74,15 +73,15 @@
   height: 280px;
 }
 
+.categoriesWrapper {
+  padding: 1vw;
+}
+
 .categories,
 .foods {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-
-.foods {
-  /* position: relative; */
 }
 
 .category {
@@ -95,7 +94,6 @@
 .infos {
   /* border: solid 1px red; */
   flex: 0 0 47%;
-  /* position: relative; */
 }
 
 .picture {
@@ -118,28 +116,22 @@
 .food {
   cursor: pointer;
   transition: all 400ms ease-in-out;
-  /* margin: 30px; */
 }
 
 .food.selected {
-  /* border: solid 4px black; */
-  /* position: absolute; */
-
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  /* top: ; */
-  /* bottom: 0; */
-  /* padding: 20px; */
   width: 28%;
   z-index: 35;
   background-color: #f39f86;
   background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
-  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.foodWrapper.selected {
+  padding: 0 2vw;
 }
 
 .food:nth-child(1) {
@@ -182,33 +174,107 @@
 
 .detailswrapper {
   position: fixed;
-  top: 68px;
+  z-index: 34;
+  top: 5%;
   overflow-y: hidden;
   width: 60%;
-  height: 88%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 34;
-  /* Add the blur effect  */
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
+  height: 92.5%;
+  background-color: rgba(255, 255, 255);
+
   /* border: solid 1px red; */
 }
 
 .commandDetails {
   position: absolute;
-  top: 25px;
-  right: 15px;
-  /* transform: translate(-50%, -50%); */
-  /* right: 15px; */
-  width: 45.5%;
-  height: 91%;
-  /* border: solid 1px blue; */
+  display: flex;
+  flex-direction: column;
+  top: 12%;
+  left: 50%;
+  height: 80vh;
+  width: 28%;
   background-color: #f7f7f7;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   z-index: 999;
 }
 
+.commandDetails .customisation {
+  flex: 0 0 80%;
+  /* border: solid 1vw white; */
+  padding: 2vw;
+  overflow-y: auto;
+}
+.commandDetails .addtocartwrapper {
+  flex: 0 0 20%;
+  /* border: solid 1px red; */
+  display: flex;
+  align-items: center;
+  padding: 0 2vw;
+  background-color: white;
+}
+
+.commandDetails .customisation textarea {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.commandDetails .customisation .option {
+  background-color: #f8f9fa;
+  padding: 3px 0;
+  border: solid 1px #808080;
+  border-top: none;
+}
+
+.commandDetails .customisation .option:nth-child(3) {
+  border-top: solid 1px black;
+}
+.commandDetails .customisation input[type="number"] {
+  width: 100%;
+}
+
+#addToCart {
+  width: 100%;
+  padding: 15px 25px;
+  background-color: #d89c05;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 10px 10px -5px;
+}
+.mobilecommandDetails {
+  display: none;
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 30%;
+}
+
+.logoWrapper {
+  align-self: stretch;
+  /* border: solid 1px red; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoWrapper > .back {
+  /* border: solid 1px red; */
+  /* min-width: 150px; */
+  display: none;
+  height: 100%;
+  padding-top: 10px;
+  text-align: center;
+  width: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.mobilecommandDetails .content {
+  width: 100%;
+  height: 400px;
+  background-color: #f39f86;
+}
 @media screen and (max-width: 1000px) {
   #menu,
   .menuHeader,
@@ -219,40 +285,45 @@
   .food.selected {
     width: 40%;
   }
+
+  .commandDetails {
+    width: 43%;
+    left: 50%;
+  }
 }
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 800px) {
+  .picture {
+    /* background-color: blue; */
+  }
+  #menu {
+    height: 100%;
+  }
   .food.selected {
-    width: 85%;
-    top: 12%;
+    width: 90vw;
+    top: 10%;
+    left: 5vw;
     /* border: solid 4px blue; */
+  }
+  /* make it ivisible */
+  .mobilecommandDetails {
+    display: block;
   }
 
   .detailswrapper {
+    height: 95%;
   }
 
   .commandDetails {
-    width: 91%;
-    height: 83%;
-    margin-top: 36px;
-    top: 50%;
-    left: 50%;
-    /* border: solid 1px red; */
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    display: none;
   }
   .category {
-    /* flex-wrap: wrap; */
-    /* flex-direction: row-reverse; */
     flex-wrap: wrap;
-    border: solid 1px green;
   }
-
   .menuHero {
     height: 200px;
   }
-  .picture {
-  }
+
   .infos,
   .picture {
     flex: 1 0 100%;
