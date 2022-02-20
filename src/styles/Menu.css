@@ -99,23 +99,18 @@
 }
 
 .category {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  /* border: solid 1px green; */
+  margin-bottom: 70px;
 }
 
 .infos {
   /* border: solid 1px red; */
-  flex: 0 0 47%;
 }
 
 .picture {
+  width: 47%;
+  float: right;
   height: 100px;
-  width: 100px;
   border: solid 1px red;
-  flex: 0 0 47%;
-  margin-top: 65px;
 }
 
 .categoryName {
@@ -130,6 +125,7 @@
 .food {
   cursor: pointer;
   transition: all 200ms ease-in-out;
+  width: 47%;
 }
 
 .food.selected {
@@ -174,16 +170,6 @@
 .foodDescription {
   max-width: 90%;
   color: #808080;
-}
-
-.foodName.selected {
-  padding-left: 15px;
-}
-.foodPrice.selected {
-  padding-right: 15px;
-}
-.foodDescription.selected {
-  padding: 0 15px;
 }
 
 .detailswrapper {
@@ -328,8 +314,13 @@
 }
 
 @media screen and (max-width: 800px) {
+  .food {
+    width: 100%;
+  }
   .picture {
     /* background-color: blue; */
+    float: none;
+    margin-bottom: 20px;
   }
   #menu {
     height: 100%;
@@ -344,23 +335,13 @@
   .mobilecommandDetails {
     display: block;
   }
-
   .detailswrapper {
     height: 95%;
   }
-
   .commandDetails {
     display: none;
   }
-  .category {
-    flex-wrap: wrap;
-  }
   .menuHero {
     height: 200px;
-  }
-
-  .infos,
-  .picture {
-    flex: 1 0 100%;
   }
 }

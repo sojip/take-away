@@ -41,12 +41,12 @@ const Menu = (props) => {
     // Initial check
     handleTabletChange(mediaQuery);
 
-    console.log(command);
+    console.log(shoppingcart);
     return () => {
       menu.removeEventListener("scroll", changeHeaderOpacity);
       mediaQuery.removeListener(handleTabletChange);
     };
-  }, [command, cart]);
+  }, [command, shoppingcart]);
 
   function handleTabletChange(e) {
     let backdiv = document.querySelector(".back");
@@ -126,9 +126,6 @@ const Menu = (props) => {
     _command.options = _command.options.filter((option) => {
       return option.checked === true;
     });
-    // console.log(
-    //   _command.options.reduce((acc, curVal) => acc + curVal.price, 0)
-    // );
     setshoppingcart([...shoppingcart, _command]);
     backToMenu();
   }
@@ -301,7 +298,8 @@ const CatItem = (props) => {
   function handleFoodSelection(e) {
     let food = e.currentTarget;
     let foodWrapper = food.firstChild;
-    const category = e.currentTarget.parentNode.previousSibling.textContent;
+    const category =
+      e.currentTarget.parentNode.previousSibling.previousSibling.textContent;
     const header = document.querySelector(".menuHeader");
     const food_dish = food.firstChild.firstChild.firstChild.textContent;
     let selectedcategoy = categories.find((cat) => cat.name === category);
@@ -335,6 +333,7 @@ const CatItem = (props) => {
     <li className="category" key={categories.indexOf(category)}>
       <div className="infos">
         <div className="categoryName">{category.name}</div>
+        <div className="picture"></div>
         <ul className="foods">
           {category.foods.map((food) => {
             return (
@@ -362,7 +361,6 @@ const CatItem = (props) => {
           })}
         </ul>
       </div>
-      <div className="picture"></div>
     </li>
   );
 };
