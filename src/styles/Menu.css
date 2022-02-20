@@ -226,7 +226,7 @@
 }
 
 .commandDetails .customisation .option:nth-child(3) {
-  border-top: solid 1px black;
+  border-top: solid 1px #808080;
 }
 .commandDetails .customisation input[type="number"] {
   width: 100%;
