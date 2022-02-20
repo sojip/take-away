@@ -41,9 +41,9 @@ nav {
   background-color: #d89c05;
   border: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: "Roboto";
   box-shadow: 0 10px 10px -5px;
-  color: #000;
+  /* color: white; */
 }
 
 #commander:active,
