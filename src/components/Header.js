@@ -4,6 +4,8 @@ import "../styles/Header.css";
 import { db } from "../utils/Firebase";
 import Menu from "./Menu";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const Category = function (name, custom_options, foods) {
@@ -18,6 +20,7 @@ const Header = () => {
     return { name, price };
   };
   const [showmenu, setshowmenu] = useState(false);
+  let navigate = useNavigate();
 
   const [categories, setcategories] = useState([
     Category(
@@ -122,7 +125,7 @@ const Header = () => {
   }
 
   function hideMenu(e) {
-    if (e.target.classList.contains("menuBackground")) setshowmenu(false);
+    if (e.target.classList.contains("menuBackground")) navigate("/");
   }
 
   return (
@@ -131,13 +134,18 @@ const Header = () => {
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
-
-        <button id="commander" onClick={toggleMenu}>
-          Voir le Menu et Commander
-        </button>
+        <Link to="/menu">
+          <button id="commander" onClick={toggleMenu}>
+            Voir le Menu et Commander
+          </button>
+        </Link>
       </div>
 
-      {showmenu && <Menu categories={categories} />}
+      <Routes>
+        <Route path="/menu" element={<Menu categories={categories} />} />
+      </Routes>
+
+      {/* {showmenu && <Menu categories={categories} />} */}
     </div>
   );
 };
