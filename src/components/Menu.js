@@ -41,7 +41,7 @@ const Menu = (props) => {
     // Initial check
     handleTabletChange(mediaQuery);
 
-    console.log(cart);
+    console.log(command);
     return () => {
       menu.removeEventListener("scroll", changeHeaderOpacity);
       mediaQuery.removeListener(handleTabletChange);
@@ -117,6 +117,7 @@ const Menu = (props) => {
   function handleInputChange(e) {
     let name = e.target.name;
     let value = e.target.value;
+
     setcommand({ ...command, [name]: value });
   }
 
@@ -125,9 +126,20 @@ const Menu = (props) => {
     _command.options = _command.options.filter((option) => {
       return option.checked === true;
     });
-    console.log(_command);
+    // console.log(
+    //   _command.options.reduce((acc, curVal) => acc + curVal.price, 0)
+    // );
     setshoppingcart([...shoppingcart, _command]);
     backToMenu();
+  }
+
+  function fixQuantity(e) {
+    let value = e.target.value;
+    if (value === "") {
+      const _command = _.cloneDeep(command);
+      _command.quantity = 1;
+      setcommand(_command);
+    }
   }
 
   if (command.options) {
@@ -251,12 +263,20 @@ const Menu = (props) => {
                     type="number"
                     name="quantity"
                     value={command.quantity}
+                    min="1"
                     onChange={handleInputChange}
+                    onBlur={fixQuantity}
                   />
                 </div>
 
                 <div className="addtocartwrapper">
                   <button id="addToCart" onClick={addToCart}>
+                    <span className="commandTotal">
+                      {command.price * command.quantity +
+                        command.options
+                          .filter((option) => option.checked)
+                          .reduce((acc, curVal) => acc + curVal.price, 0)}
+                    </span>
                     Add To Cart
                   </button>
                 </div>

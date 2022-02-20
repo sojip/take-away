@@ -265,7 +265,18 @@
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: bold;
-  box-shadow: 0 10px 10px -5px;
+  font-family: inherit;
+  box-shadow: 0 10px 10px -5px #0000;
+  color: black;
+}
+
+.addtocartwrapper .commandTotal {
+  float: left;
+  /* border: solid 1px green; */
+}
+
+.addtocartwrapper .commandTotal::after {
+  content: " FCFA";
 }
 .mobilecommandDetails {
   display: none;
