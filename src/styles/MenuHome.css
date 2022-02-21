@@ -29,16 +29,18 @@
 
 .commandDetails {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 12%;
-  left: 50%;
+  top: 12.5%;
+  right: 22%;
+  /* left: 50%; */
   height: 80vh;
   width: 28%;
+  display: flex;
+  flex-direction: column;
   background-color: #f7f7f7;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   z-index: 999;
+  /* border: solid 3px red; */
 }
 
 .commandDetails .customisation {
@@ -129,7 +131,7 @@
 
   .commandDetails {
     width: 43%;
-    left: 50%;
+    right: 7%;
   }
 }
 
@@ -140,6 +142,8 @@
   .detailswrapper {
     top: 0;
     height: 100%;
+    width: 100%;
+    /* right: 0; */
   }
 
   .commandDetails {
@@ -148,5 +152,8 @@
 
   .menuHero {
     height: 200px;
+  }
+  .categoriesWrapper {
+    padding: 2vw;
   }
 }

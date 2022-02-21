@@ -1,10 +1,12 @@
 import "../styles/Menu.css";
 import menu from "../images/menu.png";
 import cart from "../images/shopping-cart.png";
-import menuImage from "../images/burger_frites.jpg";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Backbutton from "../images/back_icon.png";
+import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
+import CatItem from "./CatItem";
+import MenuHome from "./MenuHome";
 const _ = require("lodash");
 
 const Menu = (props) => {
@@ -12,7 +14,7 @@ const Menu = (props) => {
   const [command, setcommand] = useState({});
   const [shoppingcart, setshoppingcart] = useState([]);
   let domcustomisationOptions;
-
+  let navigate = useNavigate();
   // Create a condition that targets viewports at least 800px wide
   const mediaQuery = window.matchMedia("(max-width: 800px)");
 
@@ -36,10 +38,10 @@ const Menu = (props) => {
     menu.addEventListener("scroll", changeHeaderOpacity);
 
     // Register media query event listener
-    mediaQuery.addListener(handleTabletChange);
+    // mediaQuery.addListener(handleTabletChange);
 
     // Initial check
-    handleTabletChange(mediaQuery);
+    // handleTabletChange(mediaQuery);
 
     console.log(shoppingcart);
     return () => {
@@ -69,10 +71,10 @@ const Menu = (props) => {
     const menu = document.querySelector("#menu");
     let selected = document.querySelector(".food.selected");
     let foodWrapper = document.querySelector(".foodWrapper.selected");
-
     if (e.target === e.currentTarget) {
       selected.classList.remove("selected");
       foodWrapper.classList.remove("selected");
+      document.querySelector(".menuOptions").classList.remove("hidden");
       setshowdetails(false);
       if (menu.scrollTop < 250) header.classList.remove("scrolled");
     }
@@ -95,8 +97,17 @@ const Menu = (props) => {
     let header = document.querySelector(".menuHeader");
     let selected = document.querySelector(".food.selected");
     let foodWrapper = document.querySelector(".foodWrapper.selected");
-    backdiv.style.display = "none";
-    document.querySelector(".menuHeader").style.paddingLeft = "2vw";
+    let cartwrapper = document.querySelector(".cartWrapper");
+    if (!selected) {
+      if (cartwrapper) {
+        navigate(-1);
+        document.querySelector(".menuOptions").classList.remove("hidden");
+        return;
+      }
+      navigate("/");
+      return;
+    }
+    document.querySelector(".menuOptions").classList.remove("hidden");
     selected.classList.remove("selected");
     foodWrapper.classList.remove("selected");
     setshowdetails(false);
@@ -117,7 +128,6 @@ const Menu = (props) => {
   function handleInputChange(e) {
     let name = e.target.name;
     let value = e.target.value;
-
     setcommand({ ...command, [name]: value });
   }
 
@@ -171,198 +181,56 @@ const Menu = (props) => {
                 onClick={backToMenu}
                 initial={{ x: -5, y: 0 }}
                 animate={{ x: 0, y: 0 }}
-                exit={{ x: -300, opacity: 0 }}
+                exit={{ x: -100 }}
               >
                 <img src={Backbutton} id="backbutton" alt="back" />
               </motion.div>
             </AnimatePresence>
 
-            <div>Take Away</div>
+            <div className="logo">Take Away</div>
           </div>
           <div className="menuOptions">
             <div>
               <img src={menu} alt="menu" />
             </div>
             <div>
-              <img src={cart} alt="cart" />
-              {shoppingcart.length > 0 && (
-                <motion.span
-                  className="notificationsCount"
-                  initial={{ x: 0, y: -100 }}
-                  animate={{ x: 0, y: 0 }}
-                >
-                  {shoppingcart.length}
-                </motion.span>
-              )}
+              <Link to="cart">
+                <img src={cart} alt="cart" />
+                {shoppingcart.length > 0 && (
+                  <motion.span
+                    className="notificationsCount"
+                    initial={{ x: 0, y: -100 }}
+                    animate={{ x: 0, y: 0 }}
+                  >
+                    {shoppingcart.length}
+                  </motion.span>
+                )}
+              </Link>
             </div>
           </div>
         </div>
-        <motion.div
-          className="menuHero"
-          style={{
-            backgroundImage: `url(${menuImage})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        ></motion.div>
-        <div className="categoriesWrapper">
-          <ul className="categories">{domcategories}</ul>
-        </div>
+        <Outlet />
 
-        <AnimatePresence>
-          {showdetails && (
-            <div>
-              <motion.div
-                className="detailswrapper"
-                onClick={closedetails}
-                key="modal"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="mobilecommandDetails">
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                  <div className="content"></div>
-                </div>
-              </motion.div>
-              <div className="commandDetails">
-                <div className="customisation">
-                  <div className="selectedDescription"></div>
-                  <div style={{ marginBottom: "15px" }}>
-                    Customisez votre repas:
-                  </div>
-                  {domcustomisationOptions}
-                  <div style={{ marginBottom: "15px", marginTop: "15px" }}>
-                    Instructions spéciales
-                  </div>
-                  <textarea
-                    name="instructions"
-                    id="instructions"
-                    placeholder="Exemple: pas de poivre/sucre/sel svp"
-                    rows="3"
-                    onChange={handleInputChange}
-                  ></textarea>
-                  <div style={{ marginBottom: "15px" }}>Quantité</div>
-                  <input
-                    type="number"
-                    name="quantity"
-                    value={command.quantity}
-                    min="1"
-                    onChange={handleInputChange}
-                    onBlur={fixQuantity}
-                  />
-                </div>
-
-                <div className="addtocartwrapper">
-                  <button id="addToCart" onClick={addToCart}>
-                    <span className="commandTotal">
-                      {command.price * command.quantity +
-                        command.options
-                          .filter((option) => option.checked)
-                          .reduce((acc, curVal) => acc + curVal.price, 0)}
-                    </span>
-                    Add To Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </AnimatePresence>
+        <Routes>
+          <Route
+            index
+            element={
+              <MenuHome
+                domcategories={domcategories}
+                showdetails={showdetails}
+                closedetails={closedetails}
+                domcustomisationOptions={domcustomisationOptions}
+                handleInputChange={handleInputChange}
+                command={command}
+                fixQuantity={fixQuantity}
+                addToCart={addToCart}
+              />
+            }
+          />
+        </Routes>
       </div>
     </div>
   );
 };
 
-const CatItem = (props) => {
-  const category = props.category;
-  const categories = props.categories;
-  const handleTabletChange = props.handleTabletChange;
-  const setcommand = props.setcommand;
-  const setshowdetails = props.setshowdetails;
-  // Create a condition that targets viewports at least 800px wide
-  const mediaQuery = window.matchMedia("(max-width: 800px)");
-
-  function handleFoodSelection(e) {
-    let food = e.currentTarget;
-    let foodWrapper = food.firstChild;
-    const category =
-      e.currentTarget.parentNode.previousSibling.previousSibling.textContent;
-    const header = document.querySelector(".menuHeader");
-    const food_dish = food.firstChild.firstChild.firstChild.textContent;
-    let selectedcategoy = categories.find((cat) => cat.name === category);
-    let selectedfood = selectedcategoy.foods.find(
-      (food_) => food_.name === food_dish
-    );
-    //change header background
-    header.classList.add("scrolled");
-    //change bacground color of element
-    food.classList.add("selected");
-    //change padding of element
-    foodWrapper.classList.add("selected");
-    //show details of selection
-    setshowdetails(true);
-    // show back button if resolution is under 800px
-    handleTabletChange(mediaQuery);
-    //add command
-    const _command = _.cloneDeep(selectedfood);
-    _command.options = selectedcategoy.custom_options.map((option) => {
-      //   return { name: option, checked: false };
-      const option_ = _.cloneDeep(option);
-      option_.checked = false;
-      return option_;
-    });
-    _command.instructions = "";
-    _command.quantity = 1;
-    setcommand(_command);
-  }
-
-  return (
-    <li className="category" key={categories.indexOf(category)}>
-      <div className="infos">
-        <div className="categoryName">{category.name}</div>
-        <div className="picture"></div>
-        <ul className="foods">
-          {category.foods.map((food) => {
-            return (
-              <motion.li
-                className="food"
-                onClick={handleFoodSelection}
-                key={category.foods.indexOf(food)}
-                initial={{ x: 0, y: 10 }}
-                animate={{ x: 0, y: 0 }}
-              >
-                <div className="foodWrapper">
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div className="foodName">{food.name}</div>
-                    <div className="foodPrice">{food.price}</div>
-                  </div>
-                  <div className="foodDescription">{food.description}</div>
-                </div>
-              </motion.li>
-            );
-          })}
-        </ul>
-      </div>
-    </li>
-  );
-};
-
-export default Menu;
+export { Menu };

@@ -21,6 +21,7 @@
   background-color: white;
   color: black;
   /* position: relative; */
+  z-index: 30;
 }
 
 .menuHeader {
@@ -29,7 +30,6 @@
   align-items: center;
   /* border: solid 1px black; */
   font-size: 25px;
-  padding: 0 0 0 2vw;
   background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   width: 60%;
@@ -56,13 +56,16 @@
 .menuHeader .logoWrapper > .back {
   /* border: solid 1px red; */
   /* min-width: 150px; */
-  display: none;
+  /* display: none; */
   height: 100%;
-  padding-top: 10px;
-  text-align: center;
-  width: 50px;
+  /* padding-top: 11px; */
+  padding: 7px 0;
+  width: 70px;
   background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menuHeader .logo {
@@ -75,6 +78,10 @@
   align-self: stretch;
   display: flex;
   justify-content: center;
+}
+
+.menuOptions.hidden {
+  visibility: hidden;
 }
 
 .menuOptions div {
@@ -111,5 +118,10 @@
 @media screen and (max-width: 800px) {
   #menu {
     height: 100%;
+    width: 100%;
+  }
+
+  .menuHeader {
+    width: 100%;
   }
 }
