@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import logo from "../images/logo.png";
 import "../styles/Header.css";
 import { db } from "../utils/Firebase";
-import Menu from "./Menu";
+import { Menu } from "./Menu";
+import Cart from "./Cart";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -142,10 +143,10 @@ const Header = () => {
       </div>
 
       <Routes>
-        <Route path="/menu" element={<Menu categories={categories} />} />
+        <Route path="menu" element={<Menu categories={categories} />}>
+          <Route path="cart" element={<Cart />} />
+        </Route>
       </Routes>
-
-      {/* {showmenu && <Menu categories={categories} />} */}
     </div>
   );
 };

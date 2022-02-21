@@ -83,10 +83,9 @@
     width: 100%;
   }
   .food.selected {
-    width: 90vw;
-    top: 10%;
+    width: 90%;
     left: 5vw;
-    /* border: solid 4px blue; */
+    top: 10%;
   }
   .picture {
     /* background-color: blue; */
