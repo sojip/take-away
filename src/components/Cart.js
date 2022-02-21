@@ -1,24 +1,26 @@
 import "../styles/Cart.css";
-import Logo from "../images/logo.png";
+import Logo from "../images/burger_.jpg";
 import contactImage from "../images/user.png";
 import optionImage from "../images/choice.png";
 import clockImage from "../images/clock.png";
 import paymentImage from "../images/wallet.png";
 import editImage from "../images/edit.png";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { CartContext } from "./Menu";
 
 // const logo = require("../images/logo.png");
 
 const Cart = (props) => {
+  const shoppingcart = useContext(CartContext);
   useEffect(() => {
     // document.querySelector(".back").display = "block";
     document.querySelector(".menuOptions").classList.add("hidden");
+    document.querySelector(".menuHeader").classList.add("scrolled");
+    console.log(shoppingcart);
   });
   return (
     <div className="cartWrapper">
-      <img scr={Logo} alt="logo" />
-
-      <div className="cart"></div>
+      <div className="cart">{/* <img scr={contactImage} alt="" /> */}</div>
 
       <div className="customer">
         <div className="icons">
@@ -42,7 +44,6 @@ const Cart = (props) => {
         </div>
         <div className="commandType">
           <span>option de commande</span>
-          <img scr={editImage} alt="" />
           <div className="edition">
             <label htmlFor="emporter">
               <input
@@ -71,7 +72,7 @@ const Cart = (props) => {
         </div>
         <div className="commandTime">
           <span>choisissez l'heure</span>
-          <img scr={editImage} alt="" />
+          {/* <img scr={editImage} alt="" /> */}
 
           <div className="edition">
             <label htmlFor="desquepossible">
@@ -102,7 +103,7 @@ const Cart = (props) => {
 
         <div className="paymentMode">
           <span>mode de paiement</span>
-          <img scr={editImage} alt="" />
+          {/* <img scr={editImage} alt="" /> */}
 
           <div className="edition">
             <label htmlFor="om">
