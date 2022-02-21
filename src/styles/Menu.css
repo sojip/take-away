@@ -1,3 +1,4 @@
+/* menu header and container */
 .menuBackground {
   position: absolute;
   top: 0;
@@ -19,6 +20,7 @@
   overflow-x: hidden;
   background-color: white;
   color: black;
+  /* position: relative; */
 }
 
 .menuHeader {
@@ -43,7 +45,27 @@
   opacity: 1;
 }
 
-.menuHeader:first-child {
+.menuHeader .logoWrapper {
+  align-self: stretch;
+  /* border: solid 1px red; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menuHeader .logoWrapper > .back {
+  /* border: solid 1px red; */
+  /* min-width: 150px; */
+  display: none;
+  height: 100%;
+  padding-top: 10px;
+  text-align: center;
+  width: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.menuHeader .logo {
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -56,7 +78,6 @@
 }
 
 .menuOptions div {
-  /* position: relative; */
   flex: 1 0 auto;
   text-align: center;
   padding: 7px 0;
@@ -67,15 +88,12 @@
 
 .menuHeader img {
   width: 30px;
-  /* height: 100%; */
 }
 
 .menuHeader .notificationsCount {
   position: absolute;
-  /* display: block; */
   top: 3px;
   right: 25.5px;
-  /* right: ; */
   padding: 4px 5px;
   font-size: 10px;
   border-radius: 50%;
@@ -83,265 +101,15 @@
   color: white;
 }
 
-.menuHero {
-  height: 280px;
-}
-
-.categoriesWrapper {
-  padding: 1vw;
-}
-
-.categories,
-.foods {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.category {
-  margin-bottom: 70px;
-}
-
-.infos {
-  /* border: solid 1px red; */
-}
-
-.picture {
-  width: 47%;
-  float: right;
-  height: 100px;
-  border: solid 1px red;
-}
-
-.categoryName {
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 25px;
-  font-size: 25px;
-  height: 40px;
-  /* border: solid 1px red; */
-}
-
-.food {
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-  width: 47%;
-}
-
-.food.selected {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 28%;
-  z-index: 35;
-  background-color: #f39f86;
-  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-
-.foodWrapper.selected {
-  padding: 0 2vw;
-}
-
-.food:nth-child(1) {
-  border-top: solid 1px #808080;
-  border-bottom: solid 1px #808080;
-  padding: 10px 0;
-}
-
-.food:not(:first-child) {
-  border-bottom: solid 1px #808080;
-  padding: 10px 0;
-}
-
-.foodName,
-.foodPrice {
-  font-weight: bold;
-  text-transform: capitalize;
-}
-
-.foodPrice::after {
-  content: "FCFA";
-  padding-left: 3px;
-  /* border: solid 1px green; */
-}
-
-.foodDescription {
-  max-width: 90%;
-  color: #808080;
-}
-
-.detailswrapper {
-  position: fixed;
-  z-index: 34;
-  top: 5%;
-  overflow-y: hidden;
-  width: 60%;
-  height: 92.5%;
-  background-color: rgba(255, 255, 255);
-
-  /* border: solid 1px red; */
-}
-
-.commandDetails {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 12%;
-  left: 50%;
-  height: 80vh;
-  width: 28%;
-  background-color: #f7f7f7;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  z-index: 999;
-}
-
-.commandDetails .customisation {
-  flex: 0 0 80%;
-  /* border: solid 1vw white; */
-  padding: 2vw;
-  overflow-y: auto;
-}
-
-.commandDetails .customisation .optionPrice {
-  float: right;
-  margin-right: 2vw;
-  font-weight: bold;
-}
-
-.commandDetails .customisation .optionPrice::before {
-  content: "+";
-}
-.commandDetails .addtocartwrapper {
-  flex: 0 0 20%;
-  /* border: solid 1px red; */
-  display: flex;
-  align-items: center;
-  padding: 0 2vw;
-  background-color: white;
-}
-
-.commandDetails .customisation textarea {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.commandDetails .customisation .option {
-  background-color: #f8f9fa;
-  padding: 3px 0;
-  border: solid 1px #808080;
-  border-top: none;
-}
-
-.commandDetails .customisation .option:nth-child(3) {
-  border-top: solid 1px #808080;
-}
-.commandDetails .customisation input[type="number"] {
-  width: 100%;
-}
-
-#addToCart {
-  width: 100%;
-  padding: 15px 25px;
-  background-color: #d89c05;
-  border: none;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: inherit;
-  box-shadow: 0 10px 10px -5px #0000;
-  color: black;
-}
-
-.addtocartwrapper .commandTotal {
-  float: left;
-  /* border: solid 1px green; */
-}
-
-.addtocartwrapper .commandTotal::after {
-  content: " FCFA";
-}
-.mobilecommandDetails {
-  display: none;
-  height: 100%;
-  overflow-y: auto;
-  padding-top: 30%;
-}
-
-.logoWrapper {
-  align-self: stretch;
-  /* border: solid 1px red; */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logoWrapper > .back {
-  /* border: solid 1px red; */
-  /* min-width: 150px; */
-  display: none;
-  height: 100%;
-  padding-top: 10px;
-  text-align: center;
-  width: 50px;
-  background-color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-}
-
-.mobilecommandDetails .content {
-  width: 100%;
-  height: 400px;
-  background-color: #f39f86;
-}
 @media screen and (max-width: 1000px) {
   #menu,
-  .menuHeader,
-  .detailswrapper {
+  .menuHeader {
     width: 90%;
-  }
-
-  .food.selected {
-    width: 40%;
-  }
-
-  .commandDetails {
-    width: 43%;
-    left: 50%;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .food {
-    width: 100%;
-  }
-  .picture {
-    /* background-color: blue; */
-    float: none;
-    margin-bottom: 20px;
-  }
   #menu {
     height: 100%;
-  }
-  .food.selected {
-    width: 90vw;
-    top: 10%;
-    left: 5vw;
-    /* border: solid 4px blue; */
-  }
-  /* make it ivisible */
-  .mobilecommandDetails {
-    display: block;
-  }
-  .detailswrapper {
-    height: 95%;
-  }
-  .commandDetails {
-    display: none;
-  }
-  .menuHero {
-    height: 200px;
   }
 }
