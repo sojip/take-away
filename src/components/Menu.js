@@ -1,13 +1,16 @@
 import "../styles/Menu.css";
 import menu from "../images/menu.png";
 import cart from "../images/shopping-cart.png";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Backbutton from "../images/back_icon.png";
 import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 import CatItem from "./CatItem";
 import MenuHome from "./MenuHome";
+import Cart from "./Cart";
 const _ = require("lodash");
+
+export const CartContext = createContext();
 
 const Menu = (props) => {
   const [showdetails, setshowdetails] = useState(false);
@@ -15,16 +18,12 @@ const Menu = (props) => {
   const [shoppingcart, setshoppingcart] = useState([]);
   let domcustomisationOptions;
   let navigate = useNavigate();
-  // Create a condition that targets viewports at least 800px wide
-  const mediaQuery = window.matchMedia("(max-width: 800px)");
-
   const categories = props.categories;
   const domcategories = categories.map((category) => {
     return (
       <CatItem
         category={category}
         categories={categories}
-        handleTabletChange={handleTabletChange}
         setcommand={setcommand}
         setshowdetails={setshowdetails}
         key={categories.indexOf(category)}
@@ -37,34 +36,11 @@ const Menu = (props) => {
     const menu = document.querySelector("#menu");
     menu.addEventListener("scroll", changeHeaderOpacity);
 
-    // Register media query event listener
-    // mediaQuery.addListener(handleTabletChange);
-
-    // Initial check
-    // handleTabletChange(mediaQuery);
-
     console.log(shoppingcart);
     return () => {
       menu.removeEventListener("scroll", changeHeaderOpacity);
-      mediaQuery.removeListener(handleTabletChange);
     };
   }, [command, shoppingcart]);
-
-  function handleTabletChange(e) {
-    let backdiv = document.querySelector(".back");
-    // Check if the media query is true
-    if (e.matches) {
-      let selected = document.querySelector(".food.selected");
-      if (selected) {
-        backdiv.style.display = "block";
-        document.querySelector(".menuHeader").style.paddingLeft = 0;
-        return true;
-      }
-    }
-    backdiv.style.display = "none";
-    document.querySelector(".menuHeader").style.paddingLeft = "2vw";
-    return false;
-  }
 
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
@@ -171,65 +147,67 @@ const Menu = (props) => {
   }
 
   return (
-    <div className="menuBackground">
-      <div id="menu">
-        <div className="menuHeader">
-          <div className="logoWrapper">
-            <AnimatePresence>
-              <motion.div
-                className="back"
-                onClick={backToMenu}
-                initial={{ x: -5, y: 0 }}
-                animate={{ x: 0, y: 0 }}
-                exit={{ x: -100 }}
-              >
-                <img src={Backbutton} id="backbutton" alt="back" />
-              </motion.div>
-            </AnimatePresence>
+    <CartContext.Provider value={shoppingcart}>
+      <div className="menuBackground">
+        <div id="menu">
+          <div className="menuHeader">
+            <div className="logoWrapper">
+              <AnimatePresence>
+                <motion.div
+                  className="back"
+                  onClick={backToMenu}
+                  initial={{ x: -5, y: 0 }}
+                  animate={{ x: 0, y: 0 }}
+                  exit={{ x: -100 }}
+                >
+                  <img src={Backbutton} id="backbutton" alt="back" />
+                </motion.div>
+              </AnimatePresence>
 
-            <div className="logo">Take Away</div>
-          </div>
-          <div className="menuOptions">
-            <div>
-              <img src={menu} alt="menu" />
+              <div className="logo">Take Away</div>
             </div>
-            <div>
-              <Link to="cart">
-                <img src={cart} alt="cart" />
-                {shoppingcart.length > 0 && (
-                  <motion.span
-                    className="notificationsCount"
-                    initial={{ x: 0, y: -100 }}
-                    animate={{ x: 0, y: 0 }}
-                  >
-                    {shoppingcart.length}
-                  </motion.span>
-                )}
-              </Link>
+            <div className="menuOptions">
+              <div>
+                <img src={menu} alt="menu" />
+              </div>
+              <div>
+                <Link to="cart">
+                  <img src={cart} alt="cart" />
+                  {shoppingcart.length > 0 && (
+                    <motion.span
+                      className="notificationsCount"
+                      initial={{ x: 0, y: -100 }}
+                      animate={{ x: 0, y: 0 }}
+                    >
+                      {shoppingcart.length}
+                    </motion.span>
+                  )}
+                </Link>
+              </div>
             </div>
           </div>
+          <Outlet context={{ shoppingcart }} />
+
+          <Routes>
+            <Route
+              index
+              element={
+                <MenuHome
+                  domcategories={domcategories}
+                  showdetails={showdetails}
+                  closedetails={closedetails}
+                  domcustomisationOptions={domcustomisationOptions}
+                  handleInputChange={handleInputChange}
+                  command={command}
+                  fixQuantity={fixQuantity}
+                  addToCart={addToCart}
+                />
+              }
+            />
+          </Routes>
         </div>
-        <Outlet />
-
-        <Routes>
-          <Route
-            index
-            element={
-              <MenuHome
-                domcategories={domcategories}
-                showdetails={showdetails}
-                closedetails={closedetails}
-                domcustomisationOptions={domcustomisationOptions}
-                handleInputChange={handleInputChange}
-                command={command}
-                fixQuantity={fixQuantity}
-                addToCart={addToCart}
-              />
-            }
-          />
-        </Routes>
       </div>
-    </div>
+    </CartContext.Provider>
   );
 };
 

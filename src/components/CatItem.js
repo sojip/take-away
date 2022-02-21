@@ -5,15 +5,10 @@ import "../styles/CatItem.css";
 const CatItem = (props) => {
   const category = props.category;
   const categories = props.categories;
-  const handleTabletChange = props.handleTabletChange;
   const setcommand = props.setcommand;
   const setshowdetails = props.setshowdetails;
-  // Create a condition that targets viewports at least 800px wide
-  const mediaQuery = window.matchMedia("(max-width: 800px)");
-
   function handleFoodSelection(e) {
     let food = e.currentTarget;
-    let backbutton = document.querySelector(".back");
     let foodWrapper = food.firstChild;
     const category =
       e.currentTarget.parentNode.previousSibling.previousSibling.textContent;
@@ -33,12 +28,6 @@ const CatItem = (props) => {
     foodWrapper.classList.add("selected");
     //show details of selection
     setshowdetails(true);
-    //stop scrolling
-    // menu.style.overflowY = "hidden";
-    // show back button if resolution is under 800px
-    // handleTabletChange(mediaQuery);
-    // backbutton.style.display = "block";
-    // document.querySelector(".menuHeader").style.paddingLeft = 0;
     //add command
     const _command = _.cloneDeep(selectedfood);
     _command.options = selectedcategoy.custom_options.map((option) => {
