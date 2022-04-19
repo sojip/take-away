@@ -14,13 +14,15 @@
 }
 
 .detailswrapper {
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   z-index: 34;
   top: 2.5%;
   overflow-y: hidden;
   width: 60%;
   height: 95%;
   background-color: rgba(255, 255, 255);
+  /* background-color: rgba(0, 0, 0, 0.1); */
   /* background-color: transparent; */
   /* border: solid 6px red; */
 
@@ -39,7 +41,7 @@
   background-color: #f7f7f7;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  z-index: 999;
+  z-index: 99;
   /* border: solid 3px red; */
 }
 

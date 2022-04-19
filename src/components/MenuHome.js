@@ -39,7 +39,7 @@ const MenuHome = (props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.1 }}
             >
               <div className="mobilecommandDetails">
                 <div className="content"></div>
@@ -59,6 +59,7 @@ const MenuHome = (props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+
             >
               <div className="customisation">
                 <div className="selectedDescription"></div>
@@ -82,6 +83,7 @@ const MenuHome = (props) => {
                   name="quantity"
                   value={command.quantity}
                   min="1"
+                  max={999}
                   onChange={handleInputChange}
                   onBlur={fixQuantity}
                 />
@@ -95,7 +97,7 @@ const MenuHome = (props) => {
                         .filter((option) => option.checked)
                         .reduce((acc, curVal) => acc + curVal.price, 0)}
                   </span>
-                  Add To Cart
+                  Ajouter à La Carte
                 </button>
               </div>
             </motion.div>

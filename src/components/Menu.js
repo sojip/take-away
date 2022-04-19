@@ -7,7 +7,6 @@ import Backbutton from "../images/back_icon.png";
 import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 import CatItem from "./CatItem";
 import MenuHome from "./MenuHome";
-import Cart from "./Cart";
 const _ = require("lodash");
 
 export const CartContext = createContext();
@@ -32,15 +31,8 @@ const Menu = (props) => {
   });
 
   useEffect(() => {
-    //change menu Header background on scroll
-    const menu = document.querySelector("#menu");
-    menu.addEventListener("scroll", changeHeaderOpacity);
-
-    console.log(shoppingcart);
-    return () => {
-      menu.removeEventListener("scroll", changeHeaderOpacity);
-    };
-  }, [command, shoppingcart]);
+    return;
+  }, []);
 
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
@@ -57,10 +49,9 @@ const Menu = (props) => {
     return;
   }
 
-  const changeHeaderOpacity = () => {
-    const menu = document.querySelector("#menu");
-    const header = document.querySelector(".menuHeader");
-    if (menu.scrollTop > 250) {
+  const changeHeaderOpacity = (e) => {
+    let header = document.querySelector(".menuHeader");
+    if (e.target.scrollTop > 250) {
       header.classList.add("scrolled");
       return;
     }
@@ -147,9 +138,9 @@ const Menu = (props) => {
   }
 
   return (
-    <CartContext.Provider value={shoppingcart}>
+    <CartContext.Provider value={{ shoppingcart, setshoppingcart }}>
       <div className="menuBackground">
-        <div id="menu">
+        <div id="menu" onScroll={changeHeaderOpacity}>
           <div className="menuHeader">
             <div className="logoWrapper">
               <AnimatePresence>

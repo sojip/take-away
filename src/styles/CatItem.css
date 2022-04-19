@@ -28,6 +28,11 @@
   width: 47%;
 }
 
+/* .food.selected {
+  background-color: green;
+  position: relative;
+  z-index: 99;
+} */
 .food.selected {
   position: absolute;
   top: 50%;

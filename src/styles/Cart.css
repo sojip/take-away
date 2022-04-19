@@ -11,24 +11,38 @@
 .cartResume {
   float: right;
   width: 49%;
-  height: 400px;
+  height: 500px;
   background-color: white;
   border: solid 1px #808080;
   padding: 0 10px;
+  overflow-y: auto;
 }
 
 table {
+  /* for tbody scrollable */
   border-collapse: collapse;
   width: 100%;
-  border: solid 1px blue;
-  /* border: solid 1px #808080; */
-  /* padding: 5px; */
+  /* border: solid 1px blue; */
 }
+
+/* for tbody scrollable */
 
 table th {
   text-align: left;
   padding: 10px 0;
-  /* color: #f0f0f0; */
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+table tr td {
+  vertical-align: top;
+}
+
+table tfoot {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
 }
 
 table th:nth-child(1) {
@@ -37,7 +51,8 @@ table th:nth-child(1) {
 }
 
 table th:nth-child(2) {
-  width: 75%;
+  width: 63%;
+  /* border: solid 1px red; */
 }
 
 .tableHeader {
@@ -74,6 +89,30 @@ table tr:last-child {
   /* background-color: red; */
 }
 
+.deleteIcon {
+  width: 20px;
+  float: right;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+#validcommand {
+  width: 40%;
+  float: right;
+  margin-right: 30%;
+  margin-top: 2vh;
+  padding: 15px 25px;
+  background-color: #d89c05;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: inherit;
+  box-shadow: 0 10px 10px -5px #0000;
+  color: black;
+}
+
 .totalRow {
   font-weight: bold;
 }
@@ -93,8 +132,6 @@ table td ul li {
 }
 
 .icons {
-  /* float: left; */
-  /* margin-right: 2vw; */
   float: left;
   padding-top: 13.5px;
   margin-left: 5px;
