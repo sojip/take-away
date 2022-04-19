@@ -6,11 +6,12 @@ import optionImage from "../images/choice.png";
 import clockImage from "../images/clock.png";
 import paymentImage from "../images/wallet.png";
 import editImage from "../images/edit.png";
+import deleteIcon from "../images/delete.png";
 import "../styles/Cart.css";
 
 const Cart = (props) => {
   let cartelements;
-  const shoppingcart = useContext(CartContext);
+  const { shoppingcart, setshoppingcart } = useContext(CartContext);
   const [datas, setdatas] = useState({
     name:
       localStorage.getItem("name") !== null ? localStorage.getItem("name") : "",
@@ -41,18 +42,31 @@ const Cart = (props) => {
   if (shoppingcart.length > 0) {
     cartelements = shoppingcart.map((element) => {
       return (
-        <tr>
+        <tr key={shoppingcart.indexOf(element)}>
           <td>x {element.quantity}</td>
           <td>
             <div>{element.name}</div>
             <ul>
               {element.options.map((option) => {
-                return <li>{option.name}</li>;
+                return (
+                  <li key={element.options.indexOf(option)}>{option.name}</li>
+                );
               })}
             </ul>
           </td>
           <td>
-            <div>{element.quantity * element.price}</div>
+            <div>
+              <span>
+                {element.quantity * element.price}
+                <img
+                  onClick={deleteItemFromCart}
+                  data-index={shoppingcart.indexOf(element)}
+                  className="deleteIcon"
+                  src={deleteIcon}
+                  alt="delete"
+                />
+              </span>
+            </div>
             {element.options.map((option) => {
               return <div>{option.price}</div>;
             })}
@@ -69,6 +83,10 @@ const Cart = (props) => {
     let storagedatas = document.querySelector(
       `.localStorageDatas[data-options=${options}]`
     );
+    console.log(options);
+    console.log(edition);
+    console.log(save);
+
     //hide local storage datas
     storagedatas.classList.add("hidden");
     //show inputs for edition
@@ -103,6 +121,17 @@ const Cart = (props) => {
     setdatas({ ...datas, [name]: value });
     localStorage.setItem(name, value);
   };
+
+  function deleteItemFromCart(e) {
+    let index = e.target.dataset.index;
+    setshoppingcart(
+      shoppingcart.filter((element) => {
+        return shoppingcart.indexOf(element) !== Number(index);
+      })
+    );
+  }
+
+  function commander() {}
 
   return (
     <div className="cartWrapper">
@@ -354,7 +383,12 @@ const Cart = (props) => {
         </div>
       </div>
 
-      <div className="cartfooter">commandez</div>
+      <div className="cartfooter">
+        <button id="validcommand" onClick={commander}>
+          <span className="commandTotal">{}</span>
+          Commander
+        </button>
+      </div>
     </div>
   );
 };

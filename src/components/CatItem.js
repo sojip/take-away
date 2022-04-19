@@ -7,6 +7,7 @@ const CatItem = (props) => {
   const categories = props.categories;
   const setcommand = props.setcommand;
   const setshowdetails = props.setshowdetails;
+
   function handleFoodSelection(e) {
     let food = e.currentTarget;
     let foodWrapper = food.firstChild;
@@ -55,6 +56,7 @@ const CatItem = (props) => {
                 key={category.foods.indexOf(food)}
                 initial={{ x: 0, y: 10 }}
                 animate={{ x: 0, y: 0 }}
+                style={{ transition: "all 100ms linear" }}
               >
                 <div className="foodWrapper">
                   <div
