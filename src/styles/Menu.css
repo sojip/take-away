@@ -41,8 +41,8 @@
 }
 
 .menuHeader.scrolled {
-  background-color: black;
-  /* opacity: 1; */
+  background-color: white;
+  opacity: 1;
 }
 
 .menuHeader .logoWrapper {
