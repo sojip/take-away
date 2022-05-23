@@ -9,18 +9,28 @@ import { categories } from "./utils/categories";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      {/* <div className="App">
         <Header />
         <Hero />
-      </div>
+      </div> */}
 
       <Routes>
-        <Route path="/" index />
-        <Route path="menu/*" element={<Menu categories={categories} />}>
-          <Route path="cart" element={<Cart />} />
+        <Route path="/*" element={<Home />}>
+          <Route path="menu/*" element={<Menu categories={categories} />}>
+            <Route path="cart" element={<Cart />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
+  );
+}
+
+function Home() {
+  return (
+    <div className="App">
+      <Header />
+      <Hero />
+    </div>
   );
 }
 
