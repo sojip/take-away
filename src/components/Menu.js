@@ -1,12 +1,15 @@
 import "../styles/Menu.css";
 import menu from "../images/menu.png";
 import cart from "../images/shopping-cart.png";
+import map from "../images/map.png";
 import { createContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Backbutton from "../images/back_icon.png";
 import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 import CatItem from "./CatItem";
 import MenuHome from "./MenuHome";
+import Cart from "../components/Cart";
+import Map from "./Map";
 const _ = require("lodash");
 
 export const CartContext = createContext();
@@ -58,17 +61,18 @@ const Menu = (props) => {
     header.classList.remove("scrolled");
   };
 
-  function backToMenu() {
+  function goBack() {
     const menu = document.querySelector("#menu");
-    let backdiv = document.querySelector(".back");
     let header = document.querySelector(".menuHeader");
     let selected = document.querySelector(".food.selected");
     let foodWrapper = document.querySelector(".foodWrapper.selected");
     let cartwrapper = document.querySelector(".cartWrapper");
-    if (!selected) {
-      if (cartwrapper) {
+    let mapwrapper = document.querySelector(".mapWrapper");
+    if (selected === null) {
+      if (cartwrapper || mapwrapper) {
         navigate(-1);
         document.querySelector(".menuOptions").classList.remove("hidden");
+        header.classList.remove("scrolled");
         return;
       }
       navigate("/");
@@ -104,7 +108,7 @@ const Menu = (props) => {
       return option.checked === true;
     });
     setshoppingcart([...shoppingcart, _command]);
-    backToMenu();
+    goBack();
   }
 
   function fixQuantity(e) {
@@ -146,7 +150,7 @@ const Menu = (props) => {
               <AnimatePresence>
                 <motion.div
                   className="back"
-                  onClick={backToMenu}
+                  onClick={goBack}
                   initial={{ x: -5, y: 0 }}
                   animate={{ x: 0, y: 0 }}
                   exit={{ x: -100 }}
@@ -159,7 +163,9 @@ const Menu = (props) => {
             </div>
             <div className="menuOptions">
               <div>
-                <img src={menu} alt="menu" />
+                <Link to="map">
+                  <img src={map} alt="map" />
+                </Link>
               </div>
               <div>
                 <Link to="cart">
@@ -195,6 +201,9 @@ const Menu = (props) => {
                 />
               }
             />
+            <Route path="cart" element={<Cart />} />
+            <Route path="map" element={<Map />} />
+            <Route path="*" element={<>Not Found</>} />
           </Routes>
         </div>
       </div>

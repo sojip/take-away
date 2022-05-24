@@ -4,7 +4,7 @@
   height: 100%;
   background-color: #f0f0f0;
   /* border: solid 4px red; */
-  position: relative;
+  /* position: relative; */
   overflow-y: auto;
 }
 
