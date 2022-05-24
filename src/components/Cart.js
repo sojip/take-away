@@ -83,9 +83,9 @@ const Cart = (props) => {
     let storagedatas = document.querySelector(
       `.localStorageDatas[data-options=${options}]`
     );
-    console.log(options);
-    console.log(edition);
-    console.log(save);
+    // console.log(options);
+    // console.log(edition);
+    // console.log(save);
 
     //hide local storage datas
     storagedatas.classList.add("hidden");
