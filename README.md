@@ -1,6 +1,6 @@
 # Restaurant Delivery App
 
-This project was created for the TAKE AWAY's restaurant to process and validate online orders in real time by entering the amount of time required to prepare the order.
+This project was created for the TAKE AWAY's restaurant to process and validate online orders in real time by specifying the time required to prepare the order.
 
 Done with HTML, CSS, Javascript, React and Firebase Firestore.
 
