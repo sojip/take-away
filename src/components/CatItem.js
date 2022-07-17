@@ -46,7 +46,22 @@ const CatItem = (props) => {
     <li className="category" key={categories.indexOf(category)}>
       <div className="infos">
         <div className="categoryName">{category.name}</div>
-        <div className="picture"></div>
+        <div
+          className="picture"
+          style={{
+            backgroundRepeat: "no-repeat",
+            backgroundImage: `url(${category.img})`,
+            // backgroundBlendMode: "overlay",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
+          {/* <img
+            src={category.img}
+            className="categorypicture"
+            alt="category_img"
+          /> */}
+        </div>
         <ul className="foods">
           {category.foods.map((food) => {
             return (
@@ -56,7 +71,9 @@ const CatItem = (props) => {
                 key={category.foods.indexOf(food)}
                 initial={{ x: 0, y: 10 }}
                 animate={{ x: 0, y: 0 }}
-                style={{ transition: "all 100ms linear" }}
+                style={{
+                  transition: "all 100ms linear",
+                }}
               >
                 <div className="foodWrapper">
                   <div

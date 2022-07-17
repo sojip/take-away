@@ -175,6 +175,7 @@ const Menu = (props) => {
                       className="notificationsCount"
                       initial={{ x: 0, y: -100 }}
                       animate={{ x: 0, y: 0 }}
+                      key={shoppingcart.length}
                     >
                       {shoppingcart.length}
                     </motion.span>
