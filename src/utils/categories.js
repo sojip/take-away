@@ -1,5 +1,10 @@
-const Category = function (name, custom_options, foods) {
-  return { name, custom_options, foods };
+import OmelettesImage from "../images/omelettes.jpg";
+import SaladImage from "../images/istockphoto-185119929-612x612.jpg";
+import BurgerImage from "../images/burger-king-whopper-jr.webp";
+import AccompImage from "../images/frying-oil-spoon.png";
+
+const Category = function (name, custom_options, foods, img) {
+  return { name, custom_options, foods, img };
 };
 
 const Food_dish = function (name, description, price) {
@@ -18,7 +23,8 @@ const categories = [
       CustomOption("saucisson", 100),
       CustomOption("spaghetti", 100),
     ],
-    [Food_dish("oeuf simple", "", 200)]
+    [Food_dish("oeuf simple", "", 200)],
+    OmelettesImage
   ),
   Category(
     "salades",
@@ -28,7 +34,8 @@ const categories = [
       CustomOption("tomates"),
       CustomOption("moutarde"),
     ],
-    [Food_dish("purée d'avocats", "", 700)]
+    [Food_dish("purée d'avocats", "", 700)],
+    SaladImage
   ),
   Category(
     "burgers",
@@ -55,7 +62,8 @@ const categories = [
         "Le cheeseburger classique. Une galette 100% bœuf, une tranche de fromage Jack, des oignons rouges en dés, des cornichons, de la moutarde et beaucoup de ketchup.",
         1500
       ),
-    ]
+    ],
+    BurgerImage
   ),
   Category(
     "accompagnements",
@@ -64,7 +72,8 @@ const categories = [
       Food_dish("frites de pommes", "1 portion", 500),
       Food_dish("frites de plantain", "1 portion", 500),
       Food_dish("pain", "", 50),
-    ]
+    ],
+    AccompImage
   ),
   Category(
     "boissons chaudes",

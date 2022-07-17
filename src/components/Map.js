@@ -1,6 +1,7 @@
 import "../styles/Map.css";
 import { useEffect } from "react";
 import L from "leaflet";
+import Truck from "../images/truck-delivery-outline.png";
 
 const Map = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Map = () => {
           "sk.eyJ1Ijoic29qaXAiLCJhIjoiY2wzazl2cDVlMDM0azNrcGZxZHowY2gwcyJ9.8zxRyyxPCO9-fiGDYCHisA",
       }
     ).addTo(map);
+
     //restaurant marker
     L.marker([2.943707, 9.912498])
       .addTo(map)
@@ -28,22 +30,16 @@ const Map = () => {
     //delivery prices circles
     L.circle([2.943707, 9.912498], {
       color: "green",
-      // fillColor: "black",
-      // fillOpacity: 0.5,
       radius: 500,
     }).addTo(map);
 
     L.circle([2.943707, 9.912498], {
       color: "red",
-      // fillColor: "red",
-      // fillOpacity: 0.5,
       radius: 2000,
     }).addTo(map);
 
     L.circle([2.943707, 9.912498], {
-      color: "yellow",
-      // fillColor: "green",
-      // fillOpacity: 0.5,
+      color: "orange",
       radius: 5000,
     }).addTo(map);
 
@@ -53,6 +49,28 @@ const Map = () => {
   return (
     <div className="mapWrapper">
       <div id="map"></div>
+      <div className="mapTitles">
+        <img src={Truck} alt="" />
+        Frais de livraison
+      </div>
+      <ul className="deliveryFees">
+        <li>
+          <div className="mapcircle first"></div>
+          <div className="fees">200</div>
+        </li>
+        <li>
+          <div className="mapcircle second"></div>
+          <div className="fees">500</div>
+        </li>
+        <li>
+          <div className="mapcircle third"></div>
+          <div className="fees">800</div>
+        </li>
+        <li>
+          <div className="fourth">Autres :</div>
+          <div className="fees">1000</div>
+        </li>
+      </ul>
     </div>
   );
 };
