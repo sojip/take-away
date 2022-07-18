@@ -32,9 +32,10 @@
 }
 
 .food {
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
+  display: block;
   width: 47%;
+  cursor: pointer;
+  transition: all 10s ease-in-out 5s;
 }
 
 /* .food.selected {
@@ -42,12 +43,14 @@
   position: relative;
   z-index: 99;
 } */
+
 .food.selected {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 28%;
+  /* position: fixed; */
+  top: 0;
+  bottom: 0;
+  /* margin: auto; */
+  height: fit-content;
+  /* width: 28%; */
   z-index: 35;
   background-color: #f39f86;
   background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
@@ -55,7 +58,7 @@
 }
 
 .foodWrapper.selected {
-  padding: 0 2vw;
+  /* padding: 0 2vw; */
 }
 
 .food:nth-child(1) {
@@ -99,7 +102,8 @@
   .food.selected {
     width: 90%;
     left: 5vw;
-    top: 10%;
+    margin: 0;
+    top: 8%;
   }
   .picture {
     /* background-color: blue; */

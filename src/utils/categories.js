@@ -1,7 +1,12 @@
 import OmelettesImage from "../images/omelettes.jpg";
-import SaladImage from "../images/istockphoto-185119929-612x612.jpg";
-import BurgerImage from "../images/burger-king-whopper-jr.webp";
-import AccompImage from "../images/frying-oil-spoon.png";
+import SaladImage from "../images/salades.jpg";
+
+// import SaladImage from "../images/istockphoto-185119929-612x612.jpg";
+import BurgerImage from "../images/burger.jpg";
+import AccompImage from "../images/accompagnements.JPG";
+import HotDrinks from "../images/hot_drink.jpg";
+import NaturalJuice from "../images/pexels-kindel-media-8215115.jpg";
+import MeatImage from "../images/2673353.jpg";
 
 const Category = function (name, custom_options, foods, img) {
   return { name, custom_options, foods, img };
@@ -83,7 +88,8 @@ const categories = [
       Food_dish("lait", "1 tasse", 200),
       Food_dish("thé", "1 tasse", 200),
       Food_dish("café au lait", "1 tasse", 200),
-    ]
+    ],
+    HotDrinks
   ),
   Category(
     "jus naturel",
@@ -92,7 +98,8 @@ const categories = [
       Food_dish("jus de baobab", "1l", 1200),
       Food_dish("jus de papaye", "1l", 1200),
       Food_dish("jus d'ananas", "1l", 1200),
-    ]
+    ],
+    NaturalJuice
   ),
   Category(
     "viandes",
@@ -100,7 +107,8 @@ const categories = [
     [
       Food_dish("poulet", "1/4 poulet", 1500),
       Food_dish("beefteck", "1 portion", 1500),
-    ]
+    ],
+    MeatImage
   ),
 ];
 

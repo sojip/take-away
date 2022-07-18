@@ -40,11 +40,11 @@ const Menu = (props) => {
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
     const menu = document.querySelector("#menu");
-    let selected = document.querySelector(".food.selected");
-    let foodWrapper = document.querySelector(".foodWrapper.selected");
+    // let selected = document.querySelector(".food.selected");
+    // let foodWrapper = document.querySelector(".foodWrapper.selected");
     if (e.target === e.currentTarget) {
-      selected.classList.remove("selected");
-      foodWrapper.classList.remove("selected");
+      // selected.classList.remove("selected");
+      // foodWrapper.classList.remove("selected");
       document.querySelector(".menuOptions").classList.remove("hidden");
       setshowdetails(false);
       if (menu.scrollTop < 250) header.classList.remove("scrolled");
@@ -54,7 +54,7 @@ const Menu = (props) => {
 
   const changeHeaderOpacity = (e) => {
     let header = document.querySelector(".menuHeader");
-    if (e.target.scrollTop > 250) {
+    if (e.target.scrollTop > 230) {
       header.classList.add("scrolled");
       return;
     }
@@ -64,8 +64,8 @@ const Menu = (props) => {
   function goBack() {
     const menu = document.querySelector("#menu");
     let header = document.querySelector(".menuHeader");
-    let selected = document.querySelector(".food.selected");
-    let foodWrapper = document.querySelector(".foodWrapper.selected");
+    let selected = document.querySelector(".food_selected");
+    // let foodWrapper = document.querySelector(".foodWrapper.selected");
     let cartwrapper = document.querySelector(".cartWrapper");
     let mapwrapper = document.querySelector(".mapWrapper");
     if (selected === null) {
@@ -79,8 +79,8 @@ const Menu = (props) => {
       return;
     }
     document.querySelector(".menuOptions").classList.remove("hidden");
-    selected.classList.remove("selected");
-    foodWrapper.classList.remove("selected");
+    // selected.classList.remove("selected");
+    // foodWrapper.classList.remove("selected");
     setshowdetails(false);
     if (menu.scrollTop < 250) header.classList.remove("scrolled");
   }

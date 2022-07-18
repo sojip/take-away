@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import menuImage from "../images/burger_frites.jpg";
 import "../styles/MenuHome.css";
 
@@ -11,6 +12,9 @@ const MenuHome = (props) => {
   const command = props.command;
   const fixQuantity = props.fixQuantity;
   const addToCart = props.addToCart;
+  useEffect(() => {
+    console.log(command);
+  }, [command]);
   return (
     <div>
       <motion.div
@@ -41,7 +45,7 @@ const MenuHome = (props) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1 }}
             >
-              <div className="mobilecommandDetails">
+              {/* <div className="mobilecommandDetails">
                 <div className="content"></div>
                 <div className="content"></div>
                 <div className="content"></div>
@@ -52,53 +56,66 @@ const MenuHome = (props) => {
                 <div className="content"></div>
                 <div className="content"></div>
                 <div className="content"></div>
-              </div>
-            </motion.div>
-            <motion.div
-              className="commandDetails"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="customisation">
-                <div className="selectedDescription"></div>
-                <div style={{ marginBottom: "15px" }}>
-                  Customisez votre repas:
+              </div> */}
+              <div className="food_selected">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div className="foodName">{command.name}</div>
+                  <div className="foodPrice">{command.price}</div>
                 </div>
-                {domcustomisationOptions}
-                <div style={{ marginBottom: "15px", marginTop: "15px" }}>
-                  Instructions spéciales
-                </div>
-                <textarea
-                  name="instructions"
-                  id="instructions"
-                  placeholder="Exemple: pas de poivre/sucre/sel svp"
-                  rows="3"
-                  onChange={handleInputChange}
-                ></textarea>
-                <div style={{ marginBottom: "15px" }}>Quantité</div>
-                <input
-                  type="number"
-                  name="quantity"
-                  value={command.quantity}
-                  min="1"
-                  max={999}
-                  onChange={handleInputChange}
-                  onBlur={fixQuantity}
-                />
+                <div className="foodDescription">{command.description}</div>
               </div>
+              <motion.div
+                className="commandDetails"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="customisation">
+                  <div className="selectedDescription"></div>
+                  <div style={{ marginBottom: "15px" }}>
+                    Customisez votre repas:
+                  </div>
+                  {domcustomisationOptions}
+                  <div style={{ marginBottom: "15px", marginTop: "15px" }}>
+                    Instructions spéciales
+                  </div>
+                  <textarea
+                    name="instructions"
+                    id="instructions"
+                    placeholder="Exemple: pas de poivre/sucre/sel svp"
+                    rows="3"
+                    onChange={handleInputChange}
+                  ></textarea>
+                  <div style={{ marginBottom: "15px" }}>Quantité</div>
+                  <input
+                    type="number"
+                    name="quantity"
+                    value={command.quantity}
+                    min="1"
+                    max={999}
+                    onChange={handleInputChange}
+                    onBlur={fixQuantity}
+                  />
+                </div>
 
-              <div className="addtocartwrapper">
-                <button id="addToCart" onClick={addToCart}>
-                  <span className="commandTotal">
-                    {command.price * command.quantity +
-                      command.options
-                        .filter((option) => option.checked)
-                        .reduce((acc, curVal) => acc + curVal.price, 0)}
-                  </span>
-                  Ajouter à La Carte
-                </button>
-              </div>
+                <div className="addtocartwrapper">
+                  <button id="addToCart" onClick={addToCart}>
+                    <span className="commandTotal">
+                      {command.price * command.quantity +
+                        command.options
+                          .filter((option) => option.checked)
+                          .reduce((acc, curVal) => acc + curVal.price, 0)}
+                    </span>
+                    Ajouter à La Carte
+                  </button>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         )}

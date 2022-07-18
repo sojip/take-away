@@ -97,9 +97,12 @@ table tr:last-child {
 }
 
 #validcommand {
+  display: block;
   width: 40%;
-  float: right;
-  margin-right: 30%;
+  margin: auto;
+  min-width: 300px;
+  /* float: right; */
+  /* margin-right: 30%; */
   margin-top: 2vh;
   padding: 15px 25px;
   background-color: #d89c05;
@@ -232,5 +235,6 @@ table td ul li {
   .cartfooter {
     width: 100%;
     right: 0;
+    bottom: 0;
   }
 }
