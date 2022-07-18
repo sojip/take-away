@@ -24,17 +24,19 @@
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; /* position: relative; */
   /* z-index: 30; */
+  /* border: solid 4px red; */
+  /* position: relative; */
 }
 
 .menuHeader {
+  position: fixed;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* border: solid 1px black; */
   font-size: 25px;
   background-color: rgba(255, 255, 255, 0.5);
-  position: fixed;
-  width: 60%;
   transition: all 250ms ease-in-out;
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
@@ -73,6 +75,7 @@
 .menuHeader .logo {
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .menuOptions {

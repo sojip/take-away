@@ -23,10 +23,14 @@ const CatItem = (props) => {
     header.classList.add("scrolled");
     //hide others links
     document.querySelector(".menuOptions").classList.add("hidden");
-    //change bacground color of element
-    food.classList.add("selected");
+    //change background color of element
+    // food.classList.add("selected");
+    //update the div with selected class with infos
+
+    //
+
     //change padding of element
-    foodWrapper.classList.add("selected");
+    // foodWrapper.classList.add("selected");
     //show details of selection
     setshowdetails(true);
     //add command
@@ -52,7 +56,7 @@ const CatItem = (props) => {
             backgroundRepeat: "no-repeat",
             backgroundImage: `url(${category.img})`,
             // backgroundBlendMode: "overlay",
-            backgroundPosition: "center",
+            backgroundPosition: "center bottom -42.5px",
             backgroundSize: "cover",
           }}
         >

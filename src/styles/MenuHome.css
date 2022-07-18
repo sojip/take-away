@@ -19,9 +19,20 @@
   z-index: 34;
   top: 2.5%;
   overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* New layout */
+  /* overflow-y: scroll; */
+  /* New layout */
+
   width: 60%;
   height: 95%;
-  background-color: rgba(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.96);
+  /* new layout */
+  padding: 0vh 2vh;
+  /* new layout */
+
   /* background-color: rgba(0, 0, 0, 0.1); */
   /* background-color: transparent; */
   /* border: solid 6px red; */
@@ -29,11 +40,10 @@
   /* border: solid 1px red; */
 }
 
-.commandDetails {
+/* .commandDetails {
   position: absolute;
   top: 12.5%;
   right: 22%;
-  /* left: 50%; */
   height: 80vh;
   width: 28%;
   display: flex;
@@ -42,14 +52,33 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   z-index: 99;
-  /* border: solid 3px red; */
+} */
+
+/* new layout */
+.food_selected {
+  height: fit-content;
+  width: 47%;
+  padding: 2vh 2vw;
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+.commandDetails {
+  width: 50%;
+  height: 80vh;
+  background-color: #f7f7f7;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  /* max-width: ; */
+}
+/* new layout */
 
 .commandDetails .customisation {
   flex: 0 0 80%;
-  /* border: solid 1vw white; */
   padding: 2vw;
-  overflow-y: auto;
 }
 
 .commandDetails .customisation .optionPrice {
@@ -113,43 +142,42 @@
   content: " FCFA";
 }
 
-.mobilecommandDetails {
-  /* display: none; */
+/* .mobilecommandDetails {
+  display: none;
   height: 100%;
   overflow-y: auto;
   padding-top: 30%;
-}
+} */
 
-.mobilecommandDetails .content {
+/* .mobilecommandDetails .content {
   width: 100%;
   height: 400px;
   background-color: #f39f86;
-}
+} */
 
 @media screen and (max-width: 1000px) {
   .detailswrapper {
     width: 90%;
   }
-
-  .commandDetails {
-    width: 43%;
-    right: 7%;
-  }
 }
 
 @media screen and (max-width: 800px) {
-  .mobilecommandDetails {
-    display: block;
-  }
   .detailswrapper {
     top: 0;
     height: 100%;
     width: 100%;
+    flex-direction: column;
+    gap: 1vh;
+    overflow-y: scroll;
+    padding-top: 9vh;
+    padding-bottom: 5vh;
     /* right: 0; */
   }
 
+  .food_selected,
   .commandDetails {
-    display: none;
+    width: 100%;
+    margin: auto;
   }
 
   .menuHero {
