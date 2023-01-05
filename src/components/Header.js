@@ -30,17 +30,15 @@ const Header = () => {
   }
 
   return (
-    <div>
-      <div className="header">
-        <div className="logo">
-          <img src={logo} alt="logo" />
-        </div>
-        <Link to="menu">
-          <button id="commander" onClick={toggleMenu}>
-            Voir le Menu et Commander
-          </button>
-        </Link>
+    <div className="header">
+      <div className="logo">
+        <img src={logo} alt="logo" />
       </div>
+      <Link to="menu">
+        <button id="commander" onClick={toggleMenu}>
+          Voir le Menu et Commander
+        </button>
+      </Link>
     </div>
   );
 };

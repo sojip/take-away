@@ -40,11 +40,7 @@ const Menu = (props) => {
   function closedetails(e) {
     const header = document.querySelector(".menuHeader");
     const menu = document.querySelector("#menu");
-    // let selected = document.querySelector(".food.selected");
-    // let foodWrapper = document.querySelector(".foodWrapper.selected");
     if (e.target === e.currentTarget) {
-      // selected.classList.remove("selected");
-      // foodWrapper.classList.remove("selected");
       document.querySelector(".menuOptions").classList.remove("hidden");
       setshowdetails(false);
       if (menu.scrollTop < 250) header.classList.remove("scrolled");

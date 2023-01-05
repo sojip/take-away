@@ -1,5 +1,6 @@
 import "../styles/Hero.css";
 import backgroundImage from "../images/burger_.jpg";
+import Header from "./Header";
 
 const Hero = () => {
   return (
@@ -7,14 +8,13 @@ const Hero = () => {
       className="hero"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        // backgroundPosition: "center",
         backgroundOrigin: "border-box",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        // background: "rgba(0,0,0,0.1)",
       }}
     >
+      <Header />
       <p>
         Bienvenue à Take Away où vous pouvez trouver
         <br />
