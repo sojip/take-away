@@ -4,34 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: solid 1px red; */
   background-color: transparent;
   padding: 1vw 1vw 0 1vw;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
-}
-
-.logo {
-  /* border: solid 1px blue; */
-}
-
-nav {
-  /* border: solid 1px green; */
-}
-
-.header nav ul {
-  list-style-type: none;
-  display: flex;
-  /* border: solid 1px red; */
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-}
-
-.header nav ul li {
-  margin-left: 20px;
 }
 
 #commander {
@@ -43,7 +21,6 @@ nav {
   cursor: pointer;
   font-family: "Roboto";
   box-shadow: 0 10px 10px -5px;
-  /* color: white; */
 }
 
 #commander:active,
@@ -56,6 +33,5 @@ nav {
   #commander {
     padding: 10px 10px;
     width: 150px;
-    /* border: solid 1px red; */
   }
 }

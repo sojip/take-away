@@ -1,5 +1,4 @@
 import "./App.css";
-import Header from "./components/Header";
 import Hero from "./components/Hero";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { Menu } from "./components/Menu";
@@ -21,7 +20,6 @@ function App() {
 function Home() {
   return (
     <div className="App">
-      <Header />
       <Hero />
       <Outlet />
     </div>
