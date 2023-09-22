@@ -5,7 +5,7 @@ import SaladImage from "../images/salades.jpg";
 import BurgerImage from "../images/burger.jpg";
 import AccompImage from "../images/accompagnements.JPG";
 import HotDrinks from "../images/hot_drink.jpg";
-import NaturalJuice from "../images/pexels-kindel-media-8215115.jpg";
+import NaturalJuice from "../images/pexels-kindel-media-8215115.jpeg";
 import MeatImage from "../images/2673353.jpg";
 
 const Category = function (name, custom_options, foods, img) {
