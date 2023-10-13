@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="menu/*" element={<Menu categories={categories} />} />
         </Route>
-        <Route path="*" element={<>Not Found</>} />
+        {/* <Route path="*" element={<>Not Found</>} /> */}
       </Routes>
     </BrowserRouter>
   );
