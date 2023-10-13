@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/takeaway/static/css/main.d548cc3e.css",
+    "main.js": "/takeaway/static/js/main.04765670.js",
+    "static/media/burger_.jpg": "/takeaway/static/media/burger_.85b2efade95b0e04145e.jpg",
+    "static/media/2673353.jpg": "/takeaway/static/media/2673353.b933155b4010a038f955.jpg",
+    "static/media/omelettes.jpg": "/takeaway/static/media/omelettes.418a7a057b734c0e2482.jpg",
+    "static/media/hot_drink.jpg": "/takeaway/static/media/hot_drink.014cd05f353ca367dc8f.jpg",
+    "static/media/burger_frites.jpeg": "/takeaway/static/media/burger_frites.c8740113a8c76d141fb0.jpeg",
+    "static/media/pexels-kindel-media-8215115.jpeg": "/takeaway/static/media/pexels-kindel-media-8215115.c417db17239d12a7eefa.jpeg",
+    "static/media/salades.jpg": "/takeaway/static/media/salades.79c09a84671a8e653e7c.jpg",
+    "static/media/burger.jpg": "/takeaway/static/media/burger.27aa3b81457d35feb198.jpg",
+    "static/media/accompagnements.JPG": "/takeaway/static/media/accompagnements.2988504f46b960d1bcfc.JPG",
+    "static/media/salad.PNG": "/takeaway/static/media/salad.f19536cf6fe0e5bf2fa1.PNG",
+    "static/media/delete.png": "/takeaway/static/media/delete.172a3d13ac43b478d30f.png",
+    "static/media/logo.png": "/takeaway/static/media/logo.8db402d367ab81b182f7.png",
+    "static/media/shopping-cart.png": "/takeaway/static/media/shopping-cart.26599e765bba7672745d.png",
+    "index.html": "/takeaway/index.html",
+    "main.d548cc3e.css.map": "/takeaway/static/css/main.d548cc3e.css.map",
+    "main.04765670.js.map": "/takeaway/static/js/main.04765670.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d548cc3e.css",
+    "static/js/main.04765670.js"
+  ]
+}
