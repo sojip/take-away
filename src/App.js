@@ -1,27 +1,26 @@
 import "./App.css";
-import Hero from "./components/Hero";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import { Menu } from "./components/Menu";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { categories } from "./utils/categories";
+import { FullPageHero } from "./components/Layout/FullPageHero";
+import { ModalLayout } from "./components/Layout/Layout";
+import { Cart } from "./components/Layout/Cart";
+import { Map } from "./components/Layout/Map";
+import { Menu } from "./components/Layout/Menu";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path="menu/*" element={<Menu categories={categories} />} />
-        </Route>
-        <Route path="*" element={<>Not Found</>} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-function Home() {
-  return (
     <div className="App">
-      <Hero />
-      <Outlet />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<FullPageHero />}>
+            <Route element={<ModalLayout />}>
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/map" element={<Map />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
