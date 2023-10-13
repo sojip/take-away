@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 1vw;
 `;
+
 export const FullPageHero = () => {
   return (
     <Wrapper>
