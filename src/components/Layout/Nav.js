@@ -7,15 +7,18 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Navigation = styled.nav`
+  position: fixed;
+  top: 2.5%;
+  width: 95%;
+  max-width: 700px;
   display: flex;
   height: 40px;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.5);
-  transition: all 250ms ease-in-out;
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
   box-shadow: 0 8px 6px -6px black;
+  z-index: 99;
 `;
 
 const LINK = styled(Link)`
@@ -29,7 +32,7 @@ const NavIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
 `;
 
 const Icon = styled.img`
@@ -37,8 +40,21 @@ const Icon = styled.img`
   height: 20px;
 `;
 
-export const Nav = () => {
-  const [hasBeenScrolled, setHasBeenScrolled] = useState(false);
+const Title = styled.div`
+  flex: 1;
+  padding-left: 1vw;
+  display: flex;
+  align-items: center;
+  transition: all 250ms ease-in-out;
+  background-color: ${(props) =>
+    props.$isTransparent === true
+      ? `rgba(255,255,255,0.7)`
+      : `rgba(255,255,255,1)`};
+`;
+
+export const Nav = ({ isTransparent }) => {
+  const [isHidden, setIsHidden] = useState(false);
+
   const navigate = useNavigate();
   return (
     <Navigation>
@@ -49,16 +65,7 @@ export const Nav = () => {
       >
         <Icon src={BackIcon} alt="back" />
       </NavIcon>
-      <div
-        style={{
-          flex: "1 0 0",
-          paddingLeft: "1vw",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        Take Away
-      </div>
+      <Title $isTransparent={isTransparent}>Take Away</Title>
       <LINK to="/map">
         <NavIcon>
           <img src={MapIcon} alt="map" />
