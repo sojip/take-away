@@ -14,7 +14,6 @@ const Image = styled.div`
 `;
 
 const CategoryName = styled.h2`
-  margin: 1vw;
   padding: 0;
   text-transform: uppercase;
   font-weight: bold;
@@ -25,6 +24,7 @@ const CategoryName = styled.h2`
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
 `;
 
 const Img = styled.div`
@@ -39,10 +39,18 @@ const Img = styled.div`
   }
 `;
 
+const Foods = styled.div`
+  & > * {
+    border-top: solid 1px black;
+  }
+  & > :last-child {
+    border-bottom: solid 1px black;
+  }
+`;
+
 const FoodWrapper = styled.div`
   cursor: pointer;
-  margin: 10px 1vw;
-  padding: 5px;
+  padding: 10px 0;
 `;
 
 const FoodName = styled.div`
@@ -66,10 +74,10 @@ const Description = styled.div`
 
 const DetailsWrapper = styled.div`
   position: fixed;
-  top: 2.5%;
+  top: calc(2.5% + 40px);
   width: 95%;
   max-width: 700px;
-  height: 95%;
+  height: calc(95% - 40px);
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -87,14 +95,13 @@ export const Menu = () => {
   const ref = useRef();
 
   const handleOpenDetails = (food, category) => {
-    console.log(category);
-    const category_ = {
+    category = {
       ...category,
-      options: category.custom_options.map((option) => {
+      custom_options: category.custom_options.map((option) => {
         return { ...option, checked: false };
       }),
     };
-    setSelectedCategory({ ...category_ });
+    setSelectedCategory({ ...category });
     setSelectedFood({ ...food });
     setCommand({ ...selectedFood, instructions: "", quantity: 1, options: [] });
     setShowDetails(true);
@@ -116,31 +123,33 @@ export const Menu = () => {
   return (
     <>
       <Image />
-      {categories.map((category) => {
-        return (
-          <div
-            key={`category${categories.indexOf(category)}`}
-            style={{ marginBottom: "15px" }}
-          >
-            <CategoryName>{category.name}</CategoryName>
-            <CategoryGrid>
-              <Img $img={category.img} />
-              <div>
-                {category.foods.map((food) => {
-                  return (
-                    <Food
-                      key={`food${category.foods.indexOf(food)}`}
-                      food={food}
-                      category={category}
-                      handleOpenDetails={handleOpenDetails}
-                    />
-                  );
-                })}
-              </div>
-            </CategoryGrid>
-          </div>
-        );
-      })}
+      <div style={{ padding: "1vw" }}>
+        {categories.map((category) => {
+          return (
+            <div
+              key={`category${categories.indexOf(category)}`}
+              style={{ marginBottom: "15px" }}
+            >
+              <CategoryName>{category.name}</CategoryName>
+              <CategoryGrid>
+                <Img $img={category.img} />
+                <Foods>
+                  {category.foods.map((food) => {
+                    return (
+                      <Food
+                        key={`food${category.foods.indexOf(food)}`}
+                        food={food}
+                        category={category}
+                        handleOpenDetails={handleOpenDetails}
+                      />
+                    );
+                  })}
+                </Foods>
+              </CategoryGrid>
+            </div>
+          );
+        })}
+      </div>
       {showDetails && (
         <DetailsWrapper ref={ref} onClick={handleCloseDetails}>
           <SelectedFood food={selectedFood} />
