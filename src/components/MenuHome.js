@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import menuImage from "../images/burger_frites.jpeg";
+import menuImage from "../images/burger_frites.jpg";
 import "../styles/MenuHome.css";
 
 const MenuHome = (props) => {
@@ -45,6 +45,18 @@ const MenuHome = (props) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1 }}
             >
+              {/* <div className="mobilecommandDetails">
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+                <div className="content"></div>
+              </div> */}
               <div className="food_selected">
                 <div
                   style={{
