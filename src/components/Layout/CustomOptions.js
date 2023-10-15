@@ -1,23 +1,75 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const fadeLeft = keyframes`
+from {
+  opacity: 0;
+  right: -300px;
+}
+to {
+  opacity: 1;
+  right: 0;
+}
+`;
 const Wrapper = styled.div`
+  position: relative;
   background-color: #f7f7f7;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   display: flex;
   flex-direction: column;
-  height: 80%;
+  animation: ${fadeLeft} 250ms ease-in-out;
 `;
 const Title = styled.div`
-  margin-bottom: 15px;
+  margin: 15px 0;
 `;
 const Footer = styled.div`
   flex: 0 0 20%;
   display: flex;
   align-items: center;
-  //   padding: 0 2vw;
+  padding: 2vw;
   background-color: white;
 `;
+
+const Options = styled.div`
+  // border: solid 1px #808080;
+  & > * {
+    border: solid 1px #808080;
+  }
+`;
+
+const Option = styled.div`
+  padding: 5px 0;
+`;
+
+const OptionPrice = styled.span`
+  float: right;
+  margin-right: 1.5vw;
+  font-weight: bold;
+  &:before {
+    content: "+";
+  }
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  padding: 15px 25px;
+  background-color: #d89c05;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 10px 10px -5px #0000;
+  color: black;
+`;
+
+const TotalPrice = styled.span`
+  float: left;
+  &::after {
+    content: " FCFA";
+  }
+`;
+
 export const CustomOptions = ({
   command,
   category,
@@ -25,51 +77,58 @@ export const CustomOptions = ({
   handleInputChange,
   addToCart,
 }) => {
+  console.log(category);
   return (
     <Wrapper>
-      <Title>Customisez votre repas:</Title>
-      {category.custom_options.map((option) => {
-        return (
-          <div key={category.custom_options.indexOf(option)}>
-            <label htmlFor={option}>
-              <input
-                type="checkbox"
-                id={option.name}
-                checked={option.checked}
-                onChange={handleOptionChange}
-              />
-              {option.name}
-            </label>
-            <span>{option.price}</span>
-          </div>
-        );
-      })}
-      <Title>instructions spéciales:</Title>
-      <textarea
-        placeholder="Exemple: pas de poivre/sucre/sel svp"
-        rows="3"
-        name="instructions"
-        onChange={handleInputChange}
-      ></textarea>
-      <Title>Quantité :</Title>
-      <input
-        type="number"
-        name="quantity"
-        value={command.quantity}
-        min={1}
-        max={999}
-        onChange={handleInputChange}
-      />
+      <div style={{ padding: "1vw", flex: "1" }}>
+        <Title style={{ fontWeight: "bold" }}>Customisez votre repas</Title>
+        <Options>
+          {category.custom_options.map((option) => {
+            return (
+              <Option key={category.custom_options.indexOf(option)}>
+                <label htmlFor={option}>
+                  <input
+                    type="checkbox"
+                    id={option.name}
+                    checked={option.checked}
+                    onChange={handleOptionChange}
+                  />
+                  {option.name}
+                </label>
+                <OptionPrice>{option.price}</OptionPrice>
+              </Option>
+            );
+          })}
+        </Options>
+        <Title>Instructions spéciales:</Title>
+        <textarea
+          placeholder="Exemple: pas de poivre/sucre/sel svp"
+          rows="3"
+          name="instructions"
+          onChange={handleInputChange}
+          style={{ width: "100%" }}
+        ></textarea>
+        <Title>Quantité :</Title>
+        <input
+          type="number"
+          name="quantity"
+          value={command.quantity}
+          min="1"
+          max="999"
+          onChange={handleInputChange}
+          style={{ width: "100%" }}
+        />
+      </div>
       <Footer>
-        <button id="addToCart" onClick={addToCart}>
-          <div>
+        <Button onClick={addToCart}>
+          <TotalPrice>
             {command.price * command.quantity +
               command.options
                 .filter((option) => option.checked)
                 .reduce((acc, curVal) => acc + curVal.price, 0)}
-          </div>
+          </TotalPrice>
           Ajouter à La Carte
-        </button>
+        </Button>
       </Footer>
     </Wrapper>
   );
