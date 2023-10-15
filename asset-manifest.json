@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/take-away/static/css/main.65643160.css",
+    "main.css": "/take-away/static/css/main.d548cc3e.css",
     "main.js": "/take-away/static/js/main.9001333f.js",
     "static/media/hot_drink.jpg": "/take-away/static/media/hot_drink.97e1db452d00ed50131e.jpg",
     "static/media/omelettes.jpg": "/take-away/static/media/omelettes.693f6c9950595473e61e.jpg",
@@ -16,11 +16,11 @@
     "static/media/logo.png": "/take-away/static/media/logo.8db402d367ab81b182f7.png",
     "static/media/shopping-cart.png": "/take-away/static/media/shopping-cart.26599e765bba7672745d.png",
     "index.html": "/take-away/index.html",
-    "main.65643160.css.map": "/take-away/static/css/main.65643160.css.map",
+    "main.d548cc3e.css.map": "/take-away/static/css/main.d548cc3e.css.map",
     "main.9001333f.js.map": "/take-away/static/js/main.9001333f.js.map"
   },
   "entrypoints": [
-    "static/css/main.65643160.css",
+    "static/css/main.d548cc3e.css",
     "static/js/main.9001333f.js"
   ]
 }
