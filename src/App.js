@@ -1,19 +1,19 @@
 import "./App.css";
 import Hero from "./components/Hero";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import { Menu } from "./components/Menu";
 import { categories } from "./utils/categories";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="menu/*" element={<Menu categories={categories} />} />
         </Route>
         {/* <Route path="*" element={<>Not Found</>} /> */}
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
