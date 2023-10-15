@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/take-away/static/css/main.d548cc3e.css",
-    "main.js": "/take-away/static/js/main.6a3fdecd.js",
+    "main.css": "/take-away/static/css/main.65643160.css",
+    "main.js": "/take-away/static/js/main.9001333f.js",
+    "static/media/hot_drink.jpg": "/take-away/static/media/hot_drink.97e1db452d00ed50131e.jpg",
+    "static/media/omelettes.jpg": "/take-away/static/media/omelettes.693f6c9950595473e61e.jpg",
+    "static/media/burger_frites.jpg": "/take-away/static/media/burger_frites.babd5d81b8c5c0b47cb1.jpg",
     "static/media/burger_.jpg": "/take-away/static/media/burger_.85b2efade95b0e04145e.jpg",
     "static/media/2673353.jpg": "/take-away/static/media/2673353.b933155b4010a038f955.jpg",
-    "static/media/omelettes.jpg": "/take-away/static/media/omelettes.418a7a057b734c0e2482.jpg",
-    "static/media/hot_drink.jpg": "/take-away/static/media/hot_drink.014cd05f353ca367dc8f.jpg",
-    "static/media/burger_frites.jpeg": "/take-away/static/media/burger_frites.c8740113a8c76d141fb0.jpeg",
-    "static/media/pexels-kindel-media-8215115.jpeg": "/take-away/static/media/pexels-kindel-media-8215115.c417db17239d12a7eefa.jpeg",
+    "static/media/pexels-kindel-media-8215115.jpg": "/take-away/static/media/pexels-kindel-media-8215115.1ac400a1778f0b827214.jpg",
     "static/media/salades.jpg": "/take-away/static/media/salades.79c09a84671a8e653e7c.jpg",
     "static/media/burger.jpg": "/take-away/static/media/burger.27aa3b81457d35feb198.jpg",
     "static/media/accompagnements.JPG": "/take-away/static/media/accompagnements.2988504f46b960d1bcfc.JPG",
@@ -16,11 +16,11 @@
     "static/media/logo.png": "/take-away/static/media/logo.8db402d367ab81b182f7.png",
     "static/media/shopping-cart.png": "/take-away/static/media/shopping-cart.26599e765bba7672745d.png",
     "index.html": "/take-away/index.html",
-    "main.d548cc3e.css.map": "/take-away/static/css/main.d548cc3e.css.map",
-    "main.6a3fdecd.js.map": "/take-away/static/js/main.6a3fdecd.js.map"
+    "main.65643160.css.map": "/take-away/static/css/main.65643160.css.map",
+    "main.9001333f.js.map": "/take-away/static/js/main.9001333f.js.map"
   },
   "entrypoints": [
-    "static/css/main.d548cc3e.css",
-    "static/js/main.6a3fdecd.js"
+    "static/css/main.65643160.css",
+    "static/js/main.9001333f.js"
   ]
 }
