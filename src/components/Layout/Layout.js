@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { Outlet } from "react-router-dom";
 import { Nav } from "./Nav";
-import { useState } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 
 const fadeIn = keyframes`
 from {
@@ -38,6 +38,7 @@ const Content = styled.div`
 
 export const ModalLayout = () => {
   const [isTransparent, setIsTransparent] = useState(true);
+  const [shoppingcart, setshoppingcart] = useState([]);
 
   const handleScroll = (e) => {
     if (e.target.scrollTop > 230) {
@@ -46,11 +47,16 @@ export const ModalLayout = () => {
     }
     setIsTransparent(true);
   };
+
+  useEffect(() => {
+    console.log(shoppingcart);
+  }, [shoppingcart]);
+
   return (
     <BackGround>
       <Content onScroll={handleScroll}>
-        <Nav isTransparent={isTransparent} />
-        <Outlet />
+        <Nav isTransparent={isTransparent} shoppingcart={shoppingcart} />
+        <Outlet context={[shoppingcart, setshoppingcart]} />
       </Content>
     </BackGround>
   );

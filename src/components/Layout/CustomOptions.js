@@ -20,18 +20,17 @@ const Wrapper = styled.div`
   animation: ${fadeLeft} 250ms ease-in-out;
 `;
 const Title = styled.div`
-  margin: 15px 0;
+  margin: 5px 0 10px 0;
 `;
 const Footer = styled.div`
   flex: 0 0 20%;
   display: flex;
   align-items: center;
-  padding: 2vw;
+  padding: 2vw 1vw;
   background-color: white;
 `;
 
 const Options = styled.div`
-  // border: solid 1px #808080;
   & > * {
     border: solid 1px #808080;
   }
@@ -72,24 +71,22 @@ const TotalPrice = styled.span`
 
 export const CustomOptions = ({
   command,
-  category,
   handleOptionChange,
   handleInputChange,
   addToCart,
 }) => {
-  console.log(category);
   return (
     <Wrapper>
       <div style={{ padding: "1vw", flex: "1" }}>
         <Title style={{ fontWeight: "bold" }}>Customisez votre repas</Title>
         <Options>
-          {category.custom_options.map((option) => {
+          {command.options.map((option) => {
             return (
-              <Option key={category.custom_options.indexOf(option)}>
+              <Option key={command.options.indexOf(option)}>
                 <label htmlFor={option}>
                   <input
                     type="checkbox"
-                    id={option.name}
+                    name={option.name}
                     checked={option.checked}
                     onChange={handleOptionChange}
                   />
@@ -106,6 +103,7 @@ export const CustomOptions = ({
           rows="3"
           name="instructions"
           onChange={handleInputChange}
+          value={command.instructions}
           style={{ width: "100%" }}
         ></textarea>
         <Title>Quantité :</Title>
@@ -122,10 +120,11 @@ export const CustomOptions = ({
       <Footer>
         <Button onClick={addToCart}>
           <TotalPrice>
-            {command.price * command.quantity +
+            {(command.food.price +
               command.options
                 .filter((option) => option.checked)
-                .reduce((acc, curVal) => acc + curVal.price, 0)}
+                .reduce((acc, curVal) => acc + curVal.price, 0)) *
+              command.quantity}
           </TotalPrice>
           Ajouter à La Carte
         </Button>

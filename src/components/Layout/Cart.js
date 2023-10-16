@@ -1,3 +1,11 @@
+import { CommandDetailsForm } from "./CommandDetailsForm";
+
 export const Cart = () => {
-  return <h1>This is Cart Page</h1>;
+  return (
+    <div
+      style={{ paddingTop: "65px", backgroundColor: "#f0f0f0", height: "100%" }}
+    >
+      <CommandDetailsForm />
+    </div>
+  );
 };
