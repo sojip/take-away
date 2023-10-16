@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { categories } from "./utils/categories";
 import { FullPageHero } from "./components/Layout/FullPageHero";
 import { ModalLayout } from "./components/Layout/Layout";
 import { Cart } from "./components/Layout/Cart";
