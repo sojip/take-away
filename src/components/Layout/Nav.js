@@ -44,7 +44,7 @@ const Title = styled.div`
   padding-left: 1vw;
   display: flex;
   align-items: center;
-  transition: all 250ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
   background-color: ${(props) =>
     props.$isTransparent === true
       ? `rgba(255,255,255,0.7)`
@@ -62,7 +62,7 @@ const Count = styled.span`
   color: white;
 `;
 
-export const Nav = ({ isTransparent, shoppingcart }) => {
+export const Nav = ({ isTransparent, shoppingcart, isVisible }) => {
   const navigate = useNavigate();
   return (
     <Navigation>
@@ -74,26 +74,30 @@ export const Nav = ({ isTransparent, shoppingcart }) => {
         <Icon src={BackIcon} alt="back" />
       </NavIcon>
       <Title $isTransparent={isTransparent}>Take Away</Title>
-      <LINK to="/map">
-        <NavIcon>
-          <img src={MapIcon} alt="map" />
-        </NavIcon>
-      </LINK>
-      <LINK to="/cart">
-        <NavIcon>
-          <img src={CartIcon} alt="cart" />
-        </NavIcon>
-        {shoppingcart.length > 0 && (
-          <Count
-            as={motion.div}
-            initial={{ x: 0, y: -100 }}
-            animate={{ x: 0, y: 0 }}
-            key={shoppingcart.length}
-          >
-            {shoppingcart.length}
-          </Count>
-        )}
-      </LINK>
+      {isVisible && (
+        <>
+          <LINK to="/map">
+            <NavIcon>
+              <img src={MapIcon} alt="map" />
+            </NavIcon>
+          </LINK>
+          <LINK to="/cart">
+            <NavIcon>
+              <img src={CartIcon} alt="cart" />
+            </NavIcon>
+            {shoppingcart.length > 0 && (
+              <Count
+                as={motion.div}
+                initial={{ x: 0, y: -100 }}
+                animate={{ x: 0, y: 0 }}
+                key={shoppingcart.length}
+              >
+                {shoppingcart.length}
+              </Count>
+            )}
+          </LINK>
+        </>
+      )}
     </Navigation>
   );
 };

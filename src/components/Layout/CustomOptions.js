@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Button } from "./Button";
 
 const fadeLeft = keyframes`
 from {
@@ -47,19 +48,6 @@ const OptionPrice = styled.span`
   &:before {
     content: "+";
   }
-`;
-
-export const Button = styled.button`
-  width: 100%;
-  padding: 15px 25px;
-  background-color: #d89c05;
-  border: none;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  box-shadow: 0 10px 10px -5px #0000;
-  color: black;
 `;
 
 const TotalPrice = styled.span`
