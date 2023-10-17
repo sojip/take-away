@@ -241,7 +241,7 @@ const TimeInputs = ({ data, handleChange }) => {
   );
 };
 
-const PaymentInputs = ({ handleChange }) => {
+const PaymentInputs = ({ data, handleChange }) => {
   return (
     <>
       <Label htmlFor="orangemoney">
@@ -251,6 +251,7 @@ const PaymentInputs = ({ handleChange }) => {
           value="orange money"
           id="orangemoney"
           onChange={handleChange}
+          checked={data.paymentMode === "orange money"}
         />
         Orange Money
       </Label>
@@ -261,6 +262,7 @@ const PaymentInputs = ({ handleChange }) => {
           value="MTN money"
           id="mtnmoney"
           onChange={handleChange}
+          checked={data.paymentMode === "MTN money"}
         />
         MTN Money
       </Label>
@@ -271,6 +273,7 @@ const PaymentInputs = ({ handleChange }) => {
           value="espèces"
           id="especes"
           onChange={handleChange}
+          checked={data.paymentMode === "espèces"}
         />
         espèces
       </Label>

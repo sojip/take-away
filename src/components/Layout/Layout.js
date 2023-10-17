@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Nav } from "./Nav";
 import { useState, useEffect } from "react";
 
@@ -39,6 +39,9 @@ const Content = styled.div`
 export const ModalLayout = () => {
   const [isTransparent, setIsTransparent] = useState(true);
   const [shoppingcart, setshoppingcart] = useState([]);
+  const [isVisible, setIsVisible] = useState(true);
+  const location = useLocation();
+  const path = location.pathname;
 
   const handleScroll = (e) => {
     if (e.target.scrollTop > 230) {
@@ -52,10 +55,25 @@ export const ModalLayout = () => {
     console.log(shoppingcart);
   }, [shoppingcart]);
 
+  useEffect(() => {
+    const navLinks = ["/map", "/cart"];
+    if (navLinks.includes(path)) {
+      setIsTransparent(false);
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+      setIsTransparent(true);
+    }
+  }, [path]);
+
   return (
     <BackGround>
       <Content onScroll={handleScroll}>
-        <Nav isTransparent={isTransparent} shoppingcart={shoppingcart} />
+        <Nav
+          isTransparent={isTransparent}
+          shoppingcart={shoppingcart}
+          isVisible={isVisible}
+        />
         <Outlet context={[shoppingcart, setshoppingcart]} />
       </Content>
     </BackGround>
