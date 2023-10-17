@@ -4,14 +4,14 @@ import L from "leaflet";
 import Truck from "../../images/truck-delivery-outline.png";
 
 const Wrapper = styled.div`
-  padding: calc(40px + 3vh) 1vw 3vh 1vw;
+  padding: calc(40px + 2vh) 1vw 2vh 1vw;
   overflow-y: auto;
   height: 100%;
   // border: solid 1px red;
 `;
 
 const MAP = styled.div`
-  height: 59%;
+  height: 58%;
   z-index: 2;
 `;
 

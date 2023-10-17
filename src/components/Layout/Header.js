@@ -25,6 +25,7 @@ const LINK = styled(Link)`
   text-decoration: none;
 `;
 const IconButton = styled.button`
+  color: black;
   padding: 10px;
   background-color: #d89c05;
   border: solid 1.7px white;

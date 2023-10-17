@@ -35,6 +35,8 @@ const Header = styled.div`
 
 const Value = styled.div`
   // margin-top: 25px;
+  font-style: italic;
+  color: #808080;
 `;
 
 const Content = styled.div`

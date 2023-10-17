@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { Outlet } from "react-router-dom";
 import { Nav } from "./Nav";
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const fadeIn = keyframes`
 from {
