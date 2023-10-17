@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FoodWrapper = styled.div`
+const Wrapper = styled.div`
   cursor: pointer;
   padding: 10px;
   background-color: #f39f86;
@@ -29,12 +29,12 @@ const Description = styled.div`
 
 export const SelectedFood = ({ food, handleOpenDetails }) => {
   return (
-    <FoodWrapper>
+    <Wrapper>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <FoodName>{food.name}</FoodName>
         <FoodPrice>{food.price}</FoodPrice>
       </div>
       <Description>{food.description}</Description>
-    </FoodWrapper>
+    </Wrapper>
   );
 };

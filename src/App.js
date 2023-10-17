@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { FullPageHero } from "./components/Layout/FullPageHero";
 import { ModalLayout } from "./components/Layout/Layout";
 import { Cart } from "./components/Layout/Cart";
@@ -9,7 +9,7 @@ import { Menu } from "./components/Layout/Menu";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<FullPageHero />}>
             <Route element={<ModalLayout />}>
@@ -19,7 +19,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

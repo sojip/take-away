@@ -4,7 +4,6 @@ import BackIcon from "../../images/icons/back.png";
 import MapIcon from "../../images/icons/map.png";
 import CartIcon from "../../images/icons/cart.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const Navigation = styled.nav`
   position: fixed;

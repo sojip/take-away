@@ -85,7 +85,8 @@ const DetailsWrapper = styled.div`
   align-items: center;
   gap: 1vw;
   background-color: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) contrast(90%);
   padding: 0 1vw;
 `;
 export const Menu = () => {
