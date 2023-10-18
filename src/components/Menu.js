@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import menuImage from "../images/BurgerFrites.jpeg";
 import { categories } from "../utils/categories";
-import { useState, useRef } from "react";
-import { SelectedFood } from "./SelectedFood";
-import { CustomOptions } from "./CustomOptions";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, Outlet } from "react-router-dom";
 
 const Image = styled.div`
   background-image: url(${menuImage});
@@ -49,9 +46,11 @@ const Foods = styled.div`
   }
 `;
 
-const FoodWrapper = styled.div`
-  cursor: pointer;
+const FoodWrapper = styled(Link)`
   padding: 10px 0;
+  text-decoration: none;
+  display: block;
+  color: black;
 `;
 
 const FoodName = styled.div`
@@ -73,76 +72,8 @@ const Description = styled.div`
   color: #808080;
 `;
 
-const DetailsWrapper = styled.div`
-  position: fixed;
-  top: calc(2.5% + 40px);
-  width: 95%;
-  max-width: 700px;
-  height: calc(95% - 40px);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  align-items: center;
-  gap: 1vw;
-  background-color: rgba(255, 255, 255, 0.3);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px) contrast(90%);
-  padding: 0 1vw;
-`;
 export const Menu = () => {
-  const [showDetails, setShowDetails] = useState(false);
-  const [command, setCommand] = useState(null);
   const [shoppingcart, setshoppingcart] = useOutletContext();
-  const ref = useRef();
-
-  const handleOpenDetails = (food, category) => {
-    setCommand({
-      food: { ...food },
-      category: { ...category },
-      instructions: "",
-      quantity: 1,
-      options: category.custom_options.map((option) => {
-        return { ...option, checked: false };
-      }),
-    });
-    setShowDetails(true);
-  };
-
-  const handleCloseDetails = (e) => {
-    if (e.target === ref.current) {
-      setCommand(null);
-      setShowDetails(false);
-    }
-  };
-
-  const handleOptionChange = (e) => {
-    const name = e.target.name;
-    setCommand({
-      ...command,
-      options: command.options.map((option) => {
-        if (option.name === name) option.checked = !option.checked;
-        return option;
-      }),
-    });
-  };
-
-  const handleInputChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setCommand({
-      ...command,
-      [name]: value,
-    });
-  };
-
-  const addToCart = () => {
-    const command_ = {
-      ...command,
-      options: command.options.filter((option) => option.checked === true),
-    };
-    setshoppingcart([...shoppingcart, command_]);
-    setShowDetails(false);
-  };
 
   return (
     <>
@@ -163,8 +94,6 @@ export const Menu = () => {
                       <Food
                         key={`food${category.foods.indexOf(food)}`}
                         food={food}
-                        category={category}
-                        handleOpenDetails={handleOpenDetails}
                       />
                     );
                   })}
@@ -174,28 +103,14 @@ export const Menu = () => {
           );
         })}
       </div>
-      {showDetails && (
-        <DetailsWrapper ref={ref} onClick={handleCloseDetails}>
-          <SelectedFood food={command.food} />
-          <CustomOptions
-            command={command}
-            handleOptionChange={handleOptionChange}
-            handleInputChange={handleInputChange}
-            addToCart={addToCart}
-          />
-        </DetailsWrapper>
-      )}
+      <Outlet context={[shoppingcart, setshoppingcart]} />
     </>
   );
 };
 
-const Food = ({ food, category, handleOpenDetails }) => {
+const Food = ({ food }) => {
   return (
-    <FoodWrapper
-      onClick={() => {
-        handleOpenDetails(food, category);
-      }}
-    >
+    <FoodWrapper to={`/menu/${food.name}`}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <FoodName>{food.name}</FoodName>
         <FoodPrice>{food.price}</FoodPrice>

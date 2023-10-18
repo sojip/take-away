@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { Outlet, useLocation } from "react-router-dom";
 import { Nav } from "./Nav";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const fadeIn = keyframes`
 from {
@@ -42,6 +42,7 @@ export const ModalLayout = () => {
   const [isVisible, setIsVisible] = useState(true);
   const location = useLocation();
   const path = location.pathname;
+  const contentRef = useRef();
 
   const handleScroll = (e) => {
     if (e.target.scrollTop > 230) {
@@ -55,24 +56,26 @@ export const ModalLayout = () => {
     console.log(shoppingcart);
   }, [shoppingcart]);
 
+  /**
+   * Update Navigation style based on path
+   */
   useEffect(() => {
-    const navLinks = ["/map", "/cart"];
-    if (navLinks.includes(path)) {
+    if (path === "/menu") {
+      setIsTransparent(contentRef.current.scrollTop < 230);
+      setIsVisible(true);
+    } else {
       setIsTransparent(false);
       setIsVisible(false);
-    } else {
-      setIsVisible(true);
-      setIsTransparent(true);
     }
   }, [path]);
 
   return (
     <BackGround>
-      <Content onScroll={handleScroll}>
+      <Content ref={contentRef} onScroll={handleScroll}>
         <Nav
           isTransparent={isTransparent}
-          shoppingcart={shoppingcart}
           isVisible={isVisible}
+          shoppingcart={shoppingcart}
         />
         <Outlet context={[shoppingcart, setshoppingcart]} />
       </Content>

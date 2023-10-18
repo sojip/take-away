@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Button } from "./Button";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const fadeLeft = keyframes`
 from {
@@ -61,8 +62,19 @@ export const CustomOptions = ({
   command,
   handleOptionChange,
   handleInputChange,
-  addToCart,
 }) => {
+  const [shoppingcart, setshoppingcart] = useOutletContext();
+  const navigate = useNavigate();
+  const addToCart = () => {
+    setshoppingcart([
+      ...shoppingcart,
+      {
+        ...command,
+        options: command.options.filter((option) => option.checked === true),
+      },
+    ]);
+    navigate(-1);
+  };
   return (
     <Wrapper>
       <div style={{ padding: "1vw", flex: "1" }}>

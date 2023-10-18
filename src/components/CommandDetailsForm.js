@@ -7,6 +7,8 @@ import paymentImage from "../images/icons/wallet.png";
 import editImage from "../images/icons/edit.png";
 
 const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
   background-color: white;
   & > *:not(:last-child) {
     border: solid 1px #808080;
