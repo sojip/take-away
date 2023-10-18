@@ -1,12 +1,10 @@
-import OmelettesImage from "../images/omelettes.jpg";
-import SaladImage from "../images/salades.jpg";
-
-// import SaladImage from "../images/istockphoto-185119929-612x612.jpg";
-import BurgerImage from "../images/burger.jpg";
-import AccompImage from "../images/accompagnements.JPG";
-import HotDrinks from "../images/hot_drink.jpg";
-import NaturalJuice from "../images/pexels-kindel-media-8215115.jpeg";
-import MeatImage from "../images/2673353.jpg";
+import OmelettesImage from "../images/Omelettes.jpg";
+import SaladImage from "../images/Salades.jpg";
+import BurgerImage from "../images/Burger.jpg";
+import AccompImage from "../images/Accompagnements.JPG";
+import HotDrinks from "../images/HotDrink.jpg";
+import NaturalJuice from "../images/NaturalJuice.jpeg";
+import MeatImage from "../images/Meat.jpeg";
 
 const Category = function (name, custom_options, foods, img) {
   return { name, custom_options, foods, img };

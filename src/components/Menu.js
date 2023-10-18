@@ -1,211 +1,206 @@
-import "../styles/Menu.css";
-import menu from "../images/menu.png";
-import cart from "../images/shopping-cart.png";
-import map from "../images/map.png";
-import { createContext, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Backbutton from "../images/back_icon.png";
-import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
-import CatItem from "./CatItem";
-import MenuHome from "./MenuHome";
-import Cart from "../components/Cart";
-import Map from "./Map";
-const _ = require("lodash");
+import styled from "styled-components";
+import menuImage from "../images/BurgerFrites.jpeg";
+import { categories } from "../utils/categories";
+import { useState, useRef } from "react";
+import { SelectedFood } from "./SelectedFood";
+import { CustomOptions } from "./CustomOptions";
+import { useOutletContext } from "react-router-dom";
 
-export const CartContext = createContext();
+const Image = styled.div`
+  background-image: url(${menuImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 280px;
+`;
 
-const Menu = (props) => {
-  const [showdetails, setshowdetails] = useState(false);
-  const [command, setcommand] = useState({});
-  const [shoppingcart, setshoppingcart] = useState([]);
-  let domcustomisationOptions;
-  let navigate = useNavigate();
-  const categories = props.categories;
-  const domcategories = categories.map((category) => {
-    return (
-      <CatItem
-        category={category}
-        categories={categories}
-        setcommand={setcommand}
-        setshowdetails={setshowdetails}
-        key={categories.indexOf(category)}
-      />
-    );
-  });
+const CategoryName = styled.h2`
+  padding: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 25px;
+`;
 
-  useEffect(() => {
-    return;
-  }, []);
+const CategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+`;
 
-  function closedetails(e) {
-    const header = document.querySelector(".menuHeader");
-    const menu = document.querySelector("#menu");
-    if (e.target === e.currentTarget) {
-      document.querySelector(".menuOptions").classList.remove("hidden");
-      setshowdetails(false);
-      if (menu.scrollTop < 250) header.classList.remove("scrolled");
-    }
-    return;
+const Img = styled.div`
+  background-image: url(${(props) => props.$img});
+  background-repear: no-repeat;
+  background-position: center bottom -42.5px;
+  background-size: cover;
+  height: 100px;
+  order: 2;
+  @media screen and (max-width: 525px) {
+    order: 0;
   }
+`;
 
-  const changeHeaderOpacity = (e) => {
-    let header = document.querySelector(".menuHeader");
-    if (e.target.scrollTop > 230) {
-      header.classList.add("scrolled");
-      return;
-    }
-    header.classList.remove("scrolled");
+const Foods = styled.div`
+  & > * {
+    border-top: solid 1px black;
+  }
+  & > :last-child {
+    border-bottom: solid 1px black;
+  }
+`;
+
+const FoodWrapper = styled.div`
+  cursor: pointer;
+  padding: 10px 0;
+`;
+
+const FoodName = styled.div`
+  font-weight: bold;
+  text-transform: capitalize;
+`;
+
+const FoodPrice = styled.div`
+  font-weight: bold;
+  text-transform: capitalize;
+  &::after {
+    content: "FCFA";
+    padding-left: 3px;
+  }
+`;
+
+const Description = styled.div`
+  max-width: 90%;
+  color: #808080;
+`;
+
+const DetailsWrapper = styled.div`
+  position: fixed;
+  top: calc(2.5% + 40px);
+  width: 95%;
+  max-width: 700px;
+  height: calc(95% - 40px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: center;
+  gap: 1vw;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) contrast(90%);
+  padding: 0 1vw;
+`;
+export const Menu = () => {
+  const [showDetails, setShowDetails] = useState(false);
+  const [command, setCommand] = useState(null);
+  const [shoppingcart, setshoppingcart] = useOutletContext();
+  const ref = useRef();
+
+  const handleOpenDetails = (food, category) => {
+    setCommand({
+      food: { ...food },
+      category: { ...category },
+      instructions: "",
+      quantity: 1,
+      options: category.custom_options.map((option) => {
+        return { ...option, checked: false };
+      }),
+    });
+    setShowDetails(true);
   };
 
-  function goBack() {
-    const menu = document.querySelector("#menu");
-    let header = document.querySelector(".menuHeader");
-    let selected = document.querySelector(".food_selected");
-    // let foodWrapper = document.querySelector(".foodWrapper.selected");
-    let cartwrapper = document.querySelector(".cartWrapper");
-    let mapwrapper = document.querySelector(".mapWrapper");
-    if (selected === null) {
-      if (cartwrapper || mapwrapper) {
-        navigate(-1);
-        document.querySelector(".menuOptions").classList.remove("hidden");
-        header.classList.remove("scrolled");
-        return;
-      }
-      navigate("/");
-      return;
+  const handleCloseDetails = (e) => {
+    if (e.target === ref.current) {
+      setCommand(null);
+      setShowDetails(false);
     }
-    document.querySelector(".menuOptions").classList.remove("hidden");
-    // selected.classList.remove("selected");
-    // foodWrapper.classList.remove("selected");
-    setshowdetails(false);
-    if (menu.scrollTop < 250) header.classList.remove("scrolled");
-  }
+  };
 
-  function handleOptionChange(e) {
-    let id = e.target.id;
-    setcommand({
+  const handleOptionChange = (e) => {
+    const name = e.target.name;
+    setCommand({
       ...command,
       options: command.options.map((option) => {
-        if (option.name === id) option.checked = !option.checked;
+        if (option.name === name) option.checked = !option.checked;
         return option;
       }),
     });
-  }
+  };
 
-  function handleInputChange(e) {
+  const handleInputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    setcommand({ ...command, [name]: value });
-  }
-
-  function addToCart() {
-    const _command = _.cloneDeep(command);
-    _command.options = _command.options.filter((option) => {
-      return option.checked === true;
+    setCommand({
+      ...command,
+      [name]: value,
     });
-    setshoppingcart([...shoppingcart, _command]);
-    goBack();
-  }
+  };
 
-  function fixQuantity(e) {
-    let value = e.target.value;
-    if (value === "") {
-      const _command = _.cloneDeep(command);
-      _command.quantity = 1;
-      setcommand(_command);
-    }
-  }
-
-  if (command.options) {
-    domcustomisationOptions = command.options.map((option) => {
-      return (
-        <div key={command.options.indexOf(option)} className="option">
-          <label htmlFor={option}>
-            <input
-              type="checkbox"
-              id={option.name}
-              checked={option.checked}
-              onChange={handleOptionChange}
-            />
-            {option.name}
-          </label>
-          {option.price !== undefined && (
-            <span className="optionPrice">{option.price}</span>
-          )}
-        </div>
-      );
-    });
-  }
+  const addToCart = () => {
+    const command_ = {
+      ...command,
+      options: command.options.filter((option) => option.checked === true),
+    };
+    setshoppingcart([...shoppingcart, command_]);
+    setShowDetails(false);
+  };
 
   return (
-    <CartContext.Provider value={{ shoppingcart, setshoppingcart }}>
-      <div className="menuBackground">
-        <div id="menu" onScroll={changeHeaderOpacity}>
-          <div className="menuHeader">
-            <div className="logoWrapper">
-              <AnimatePresence>
-                <motion.div
-                  className="back"
-                  onClick={goBack}
-                  initial={{ x: -5, y: 0 }}
-                  animate={{ x: 0, y: 0 }}
-                  exit={{ x: -100 }}
-                >
-                  <img src={Backbutton} id="backbutton" alt="back" />
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="logo">Take Away</div>
+    <>
+      <Image />
+      <div style={{ padding: "1vw" }}>
+        {categories.map((category) => {
+          return (
+            <div
+              key={`category${categories.indexOf(category)}`}
+              style={{ marginBottom: "15px" }}
+            >
+              <CategoryName>{category.name}</CategoryName>
+              <CategoryGrid>
+                <Img $img={category.img} />
+                <Foods>
+                  {category.foods.map((food) => {
+                    return (
+                      <Food
+                        key={`food${category.foods.indexOf(food)}`}
+                        food={food}
+                        category={category}
+                        handleOpenDetails={handleOpenDetails}
+                      />
+                    );
+                  })}
+                </Foods>
+              </CategoryGrid>
             </div>
-            <div className="menuOptions">
-              <div>
-                <Link to="map">
-                  <img src={map} alt="map" />
-                </Link>
-              </div>
-              <div>
-                <Link to="cart">
-                  <img src={cart} alt="cart" />
-                  {shoppingcart.length > 0 && (
-                    <motion.span
-                      className="notificationsCount"
-                      initial={{ x: 0, y: -100 }}
-                      animate={{ x: 0, y: 0 }}
-                      key={shoppingcart.length}
-                    >
-                      {shoppingcart.length}
-                    </motion.span>
-                  )}
-                </Link>
-              </div>
-            </div>
-          </div>
-          <Outlet context={{ shoppingcart }} />
-
-          <Routes>
-            <Route
-              index
-              element={
-                <MenuHome
-                  domcategories={domcategories}
-                  showdetails={showdetails}
-                  closedetails={closedetails}
-                  domcustomisationOptions={domcustomisationOptions}
-                  handleInputChange={handleInputChange}
-                  command={command}
-                  fixQuantity={fixQuantity}
-                  addToCart={addToCart}
-                />
-              }
-            />
-            <Route path="cart" element={<Cart />} />
-            <Route path="map" element={<Map />} />
-            <Route path="*" element={<>Not Found</>} />
-          </Routes>
-        </div>
+          );
+        })}
       </div>
-    </CartContext.Provider>
+      {showDetails && (
+        <DetailsWrapper ref={ref} onClick={handleCloseDetails}>
+          <SelectedFood food={command.food} />
+          <CustomOptions
+            command={command}
+            handleOptionChange={handleOptionChange}
+            handleInputChange={handleInputChange}
+            addToCart={addToCart}
+          />
+        </DetailsWrapper>
+      )}
+    </>
   );
 };
 
-export { Menu };
+const Food = ({ food, category, handleOpenDetails }) => {
+  return (
+    <FoodWrapper
+      onClick={() => {
+        handleOpenDetails(food, category);
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <FoodName>{food.name}</FoodName>
+        <FoodPrice>{food.price}</FoodPrice>
+      </div>
+      <Description>{food.description}</Description>
+    </FoodWrapper>
+  );
+};
