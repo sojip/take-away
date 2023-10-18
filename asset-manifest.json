@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/take-away/static/css/main.2249499b.css",
-    "main.js": "/take-away/static/js/main.5136ede9.js",
-    "static/media/burger_.jpg": "/take-away/static/media/burger_.85b2efade95b0e04145e.jpg",
-    "static/media/2673353.jpg": "/take-away/static/media/2673353.b933155b4010a038f955.jpg",
-    "static/media/omelettes.jpg": "/take-away/static/media/omelettes.418a7a057b734c0e2482.jpg",
-    "static/media/hot_drink.jpg": "/take-away/static/media/hot_drink.014cd05f353ca367dc8f.jpg",
-    "static/media/burger_frites.jpeg": "/take-away/static/media/burger_frites.c8740113a8c76d141fb0.jpeg",
-    "static/media/pexels-kindel-media-8215115.jpeg": "/take-away/static/media/pexels-kindel-media-8215115.c417db17239d12a7eefa.jpeg",
-    "static/media/salades.jpg": "/take-away/static/media/salades.79c09a84671a8e653e7c.jpg",
-    "static/media/burger.jpg": "/take-away/static/media/burger.27aa3b81457d35feb198.jpg",
-    "static/media/accompagnements.JPG": "/take-away/static/media/accompagnements.2988504f46b960d1bcfc.JPG",
+    "main.js": "/take-away/static/js/main.60fb2259.js",
+    "static/media/BurgerBackground.jpg": "/take-away/static/media/BurgerBackground.64d0ab0e0cafaa7042ab.jpg",
+    "static/media/Omelettes.jpg": "/take-away/static/media/Omelettes.7f3889a377cc247677cf.jpg",
+    "static/media/Meat.jpeg": "/take-away/static/media/Meat.cc186d9a8ffa49c6936e.jpeg",
+    "static/media/HotDrink.jpg": "/take-away/static/media/HotDrink.014cd05f353ca367dc8f.jpg",
+    "static/media/BurgerFrites.jpeg": "/take-away/static/media/BurgerFrites.c8740113a8c76d141fb0.jpeg",
+    "static/media/NaturalJuice.jpeg": "/take-away/static/media/NaturalJuice.c417db17239d12a7eefa.jpeg",
+    "static/media/Salades.jpg": "/take-away/static/media/Salades.79c09a84671a8e653e7c.jpg",
+    "static/media/Burger.jpg": "/take-away/static/media/Burger.27aa3b81457d35feb198.jpg",
+    "static/media/Accompagnements.JPG": "/take-away/static/media/Accompagnements.2988504f46b960d1bcfc.JPG",
     "static/media/delete.png": "/take-away/static/media/delete.172a3d13ac43b478d30f.png",
-    "static/media/logo.png": "/take-away/static/media/logo.8db402d367ab81b182f7.png",
+    "static/media/Logo.png": "/take-away/static/media/Logo.8db402d367ab81b182f7.png",
     "index.html": "/take-away/index.html",
     "main.2249499b.css.map": "/take-away/static/css/main.2249499b.css.map",
-    "main.5136ede9.js.map": "/take-away/static/js/main.5136ede9.js.map"
+    "main.60fb2259.js.map": "/take-away/static/js/main.60fb2259.js.map"
   },
   "entrypoints": [
     "static/css/main.2249499b.css",
-    "static/js/main.5136ede9.js"
+    "static/js/main.60fb2259.js"
   ]
 }
