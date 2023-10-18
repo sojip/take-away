@@ -5,6 +5,7 @@ import { ModalLayout } from "./components/Layout";
 import { Cart } from "./components/Cart";
 import { Map } from "./components/Map";
 import { Menu } from "./components/Menu";
+import { Details } from "./components/MenuDetails";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<FullPageHero />}>
             <Route element={<ModalLayout />}>
-              <Route path="/menu" element={<Menu />} />
+              <Route path="/menu" element={<Menu />}>
+                <Route path="/menu/:foodName" element={<Details />} />
+              </Route>
               <Route path="/cart" element={<Cart />} />
               <Route path="/map" element={<Map />} />
             </Route>

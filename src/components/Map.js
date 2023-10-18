@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   padding: calc(40px + 2vh) 1vw 2vh 1vw;
   overflow-y: auto;
   height: 100%;
-  // border: solid 1px red;
 `;
 
 const MAP = styled.div`

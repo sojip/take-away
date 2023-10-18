@@ -27,7 +27,7 @@ const Description = styled.div`
   color: #808080;
 `;
 
-export const SelectedFood = ({ food, handleOpenDetails }) => {
+export const SelectedFood = ({ food }) => {
   return (
     <Wrapper>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
