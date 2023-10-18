@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import menuImage from "../images/BurgerFrites.jpeg";
-import { categories } from "../utils/categories";
+import menuImage from "../../images/BurgerFrites.jpeg";
+import { categories } from "../../utils/categories";
 import { Link, useOutletContext, Outlet } from "react-router-dom";
 
 const Image = styled.div`

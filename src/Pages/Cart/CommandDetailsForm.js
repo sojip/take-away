@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
-import contactImage from "../images/icons/user.png";
-import optionImage from "../images/icons/choice.png";
-import clockImage from "../images/icons/clock.png";
-import paymentImage from "../images/icons/wallet.png";
-import editImage from "../images/icons/edit.png";
+import contactImage from "../../images/icons/user.png";
+import optionImage from "../../images/icons/choice.png";
+import clockImage from "../../images/icons/clock.png";
+import paymentImage from "../../images/icons/wallet.png";
+import editImage from "../../images/icons/edit.png";
 
 const Wrapper = styled.div`
   position: sticky;

@@ -1,7 +1,7 @@
 import { CommandDetailsForm } from "./CommandDetailsForm";
-import { CartTable } from "./CartTable";
+import { CartTable } from "./Table";
 import styled from "styled-components";
-import { Button } from "./Button";
+import { Button } from "../../components/Button";
 
 const CartWrapper = styled.div`
   position: relative;
