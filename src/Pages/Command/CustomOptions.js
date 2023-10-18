@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Button } from "./Button";
+import { Button } from "../../components/Button";
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 const fadeLeft = keyframes`

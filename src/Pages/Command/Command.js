@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { SelectedFood } from "./SelectedFood";
+import { SelectedFood } from "./Food";
 import { CustomOptions } from "./CustomOptions";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { categories } from "../utils/categories";
+import { categories } from "../../utils/categories";
 
 const DetailsWrapper = styled.div`
   position: fixed;

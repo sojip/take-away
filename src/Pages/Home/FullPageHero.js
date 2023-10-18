@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImage from "../images/BurgerBackground.jpg";
+import backgroundImage from "../../images/BurgerBackground.jpg";
 import { Header } from "./Header";
 import { HomeText } from "./HomeText";
 import { Outlet } from "react-router-dom";

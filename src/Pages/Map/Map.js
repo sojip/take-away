@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect } from "react";
 import L from "leaflet";
-import Truck from "../images/icons/truck-delivery-outline.png";
+import Truck from "../../images/icons/truck-delivery-outline.png";
 
 const Wrapper = styled.div`
   padding: calc(40px + 2vh) 1vw 2vh 1vw;

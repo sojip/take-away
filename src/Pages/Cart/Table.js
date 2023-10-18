@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useOutletContext } from "react-router-dom";
-import deleteIcon from "../images/icons/delete.png";
+import deleteIcon from "../../images/icons/delete.png";
 
 const Icon = styled.img`
   width: 15px;
@@ -47,7 +47,6 @@ const HeaderRow = styled(Row)`
 
 export const CartTable = () => {
   const [shoppingcart, setshoppingcart] = useOutletContext();
-  console.log(shoppingcart);
 
   const deleteCommand = (command) => {
     setshoppingcart(shoppingcart.filter((element) => element !== command));

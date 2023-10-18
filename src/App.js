@@ -1,11 +1,11 @@
 import "./App.css";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import { FullPageHero } from "./components/FullPageHero";
+import { FullPageHero } from "./Pages/Home/FullPageHero";
 import { ModalLayout } from "./components/Layout";
-import { Cart } from "./components/Cart";
-import { Map } from "./components/Map";
-import { Menu } from "./components/Menu";
-import { Details } from "./components/MenuDetails";
+import { Cart } from "./Pages/Cart/Cart";
+import { Map } from "./Pages/Map/Map";
+import { Menu } from "./Pages/Menu/Menu";
+import { Details } from "./Pages/Command/Command";
 
 function App() {
   return (

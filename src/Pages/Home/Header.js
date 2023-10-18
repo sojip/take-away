@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "../images/Logo.png";
-import MenuIcon from "../images/icons/menu.png";
+import logo from "../../images/Logo.png";
+import MenuIcon from "../../images/icons/menu.png";
 import styled from "styled-components";
 
 const HEADER = styled.header`
