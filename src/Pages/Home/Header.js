@@ -23,21 +23,27 @@ const Img = styled.img`
 
 const LINK = styled(Link)`
   text-decoration: none;
+  color: #d89c05;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  // border: solid 1px red;
 `;
 const IconButton = styled.button`
   color: black;
   padding: 10px;
-  background-color: #d89c05;
-  border: solid 1.7px white;
+  background-color: transparent;
+  color: #d89c05;
+  // border: solid 1.7px white;
   cursor: pointer;
   font-size: 0.7rem;
   font-weight: bold;
   font-family: inherit;
-  box-shadow: 0 10px 10px -5px #0000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  // box-shadow: 0 10px 10px -5px #0000;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // gap: 5px;
   text-transform: uppercase;
   transition: transform 200ms ease-in-out;
   &:active {
@@ -55,10 +61,11 @@ const Header = () => {
         <Img src={logo} alt="logo" />
       </Image>
       <LINK to="menu">
-        <IconButton>
+        Voir le Menu
+        {/* <IconButton>
           <Icon src={MenuIcon} alt="" />
-          <span>Voir le menu et commander</span>
-        </IconButton>
+          <span>Consultez le menu</span>
+        </IconButton> */}
       </LINK>
     </HEADER>
   );
