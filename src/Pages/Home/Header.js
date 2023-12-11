@@ -27,46 +27,30 @@ const LINK = styled(Link)`
   font-size: 1.1rem;
   font-weight: bold;
   text-transform: uppercase;
-  // border: solid 1px red;
 `;
 const IconButton = styled.button`
   color: black;
   padding: 10px;
   background-color: transparent;
   color: #d89c05;
-  // border: solid 1.7px white;
   cursor: pointer;
   font-size: 0.7rem;
   font-weight: bold;
   font-family: inherit;
-  // box-shadow: 0 10px 10px -5px #0000;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // gap: 5px;
   text-transform: uppercase;
   transition: transform 200ms ease-in-out;
   &:active {
     transform: scale(1.05);
   }
 `;
-const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
+
 const Header = () => {
   return (
     <HEADER>
       <Image className="logo">
         <Img src={logo} alt="logo" />
       </Image>
-      <LINK to="menu">
-        Voir le Menu
-        {/* <IconButton>
-          <Icon src={MenuIcon} alt="" />
-          <span>Consultez le menu</span>
-        </IconButton> */}
-      </LINK>
+      <LINK to="menu">Voir le Menu</LINK>
     </HEADER>
   );
 };
